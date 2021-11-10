@@ -11,7 +11,7 @@ def installPowerline():
     log('Đang cài PowerLine và font Cascadia Code giúp Terminal đẹp hơn...')
     os.system('sudo dnf install powerline -y')
     fRead = open('./.bashrc', 'r')
-    fo = open('~/.bashrc', 'w')
+    fo = open(str(os.path.expanduser('~'))+'/.bashrc', 'w')
     fo.write(fRead.read())
     fo.flush()
     fo.close()
