@@ -1,8 +1,19 @@
 import datetime
 import os
+from zipfile import ZipFile
+
 
 def log(stage):
     print("[" + str(datetime.datetime.now()) + "]: " + stage)
+
+
+def getDarculaTheme():
+    log("Đang tải Dracula theme giúp cho giao diện trông đẹp hơn")
+    os.system("axel -n 20 https://github.com/dracula/gtk/archive/master.zip")
+    ZipFile('./gtk-master.zip', 'r') .extractall('/usr/share/themes/')
+    os.system("gsettings set org.gnome.desktop.interface gtk-theme \"Dracula\" && gsettings set org.gnome.desktop.wm.preferences theme \"Dracula\"")
+    os.system(
+        "gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'")
 
 
 def doUpdateAndUpgrade():
@@ -45,7 +56,7 @@ def installCodecs():
 
 def installSoftware():
     log("Đang cài một số tool cần thiết...")
-    os.system("sudo dnf install htop neofetch xclip gedit -y")
+    os.system("sudo dnf install htop neofetch xclip gedit axel -y")
 
 
 def uninstallPlymouthAndEnableVerboseBootMode():
@@ -60,6 +71,7 @@ def uninstallPlymouthAndEnableVerboseBootMode():
     else:
         os.system("sudo grub2-mkconfig -o /boot/grub2/grub.cfg")
     os.system("sudo plymouth-set-default-theme details && sudo dracut -f")
+
 
 print("Chào mừng bạn đến với script init Fedora Linux viết bởi davidhoang05022009(Hoàng Minh Thiên)\n")
 print("Bạn cần chạy lệnh này dưới quyền root. Nếu không biết bạn đã ở quyền root hay chưa, hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 -m post-install.py\'")
@@ -76,8 +88,10 @@ if confirm == "y" or confirm == "Y" or confirm.lower() == "yes":
     installCodecs()
     installSoftware()
     uninstallPlymouthAndEnableVerboseBootMode()
+    getDarculaTheme()
     print("Đã hoàn thành...")
-    confirm2 = input("Bạn có muốn khởi động lại máy ngay bây giờ không? [y(es)/n(o)]: ")
+    confirm2 = input(
+        "Bạn có muốn khởi động lại máy ngay bây giờ không? [y(es)/n(o)]: ")
     if confirm2 == "y" or confirm2 == "Y" or confirm2.lower() == "yes":
         os.system("sudo systemctl reboot")
     else:
