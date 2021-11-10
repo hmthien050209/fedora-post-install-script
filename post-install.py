@@ -125,7 +125,7 @@ def backUp():
     log("Đã backup xong...")
 
 print('Chào mừng bạn đến với script init Fedora Linux viết bởi davidhoang05022009(Hoàng Minh Thiên)\n')
-print('Bạn cần chạy lệnh này dưới quyền root. Nếu không biết bạn đã ở quyền root hay chưa, hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 -m post-install.py\'')
+print('Bạn cần chạy lệnh này dưới quyền root. Nếu không biết bạn đã ở quyền root hay chưa, hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 -m post-install\'')
 print('Nếu đây là lần đầu bạn tiếp xúc với Linux thì script này sẽ giúp bạn cài đặt những thứ cần thiết để sử dụng trong việc học tập và làm việc hàng ngày\n')
 confirm = input('Bạn sẽ tiếp tục để script này chạy chứ? [y(es)/n(o)]: ')
 if confirm.lower() == 'y' or confirm.lower() == 'yes':
