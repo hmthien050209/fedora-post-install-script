@@ -7,7 +7,7 @@ def log(stage):
     print("[" + str(datetime.datetime.now()) + "]: " + stage)
 
 
-def getDarculaTheme():
+def getDraculaTheme():
     log("Đang tải Dracula theme giúp cho giao diện trông đẹp hơn")
     os.system("axel -n 20 https://github.com/dracula/gtk/archive/master.zip")
     ZipFile('./gtk-master.zip', 'r') .extractall('/usr/share/themes/')
@@ -88,7 +88,7 @@ if confirm == "y" or confirm == "Y" or confirm.lower() == "yes":
     installCodecs()
     installSoftware()
     uninstallPlymouthAndEnableVerboseBootMode()
-    getDarculaTheme()
+    getDraculaTheme()
     print("Đã hoàn thành...")
     confirm2 = input(
         "Bạn có muốn khởi động lại máy ngay bây giờ không? [y(es)/n(o)]: ")
