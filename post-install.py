@@ -1,7 +1,6 @@
 import datetime
 import os
 from zipfile import ZipFile
-import pwd
 
 
 def log(stage):
@@ -109,7 +108,7 @@ def backUp():
     fReadDNFConf.close()
 
     #Backup .bashrc
-    fReadBASHRC = open('/home/'+str(pwd.getpwuid(os.getuid()).pw_name)+'/.bashrc', 'r')
+    fReadBASHRC = open(str(os.path.expanduser('~'))+'/.bashrc', 'r')
     fWriteBASHRCBackup = open('./.bashrc.bak', 'x')
     fWriteBASHRCBackup.write(fReadBASHRC.read())
     fWriteBASHRCBackup.flush()
