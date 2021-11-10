@@ -1,6 +1,7 @@
 import datetime
 import os
 from zipfile import ZipFile
+import getpass
 
 
 def log(stage):
@@ -98,31 +99,32 @@ def cleanUp():
 
 def backUp():
     log('Đang backup lại một số file phòng trường hợp máy bị lỗi...')
-    
+
     #Backup dnf.conf
-    fReadDNFConf=open('/etc/dnf/dnf.conf', 'r')
-    fWriteDNFConfBackup=open('./dnf.conf.bak', 'x')
+    fReadDNFConf = open('/etc/dnf/dnf.conf', 'r')
+    fWriteDNFConfBackup = open('./dnf.conf.bak', 'x')
     fWriteDNFConfBackup.write(fReadDNFConf.read())
     fWriteDNFConfBackup.flush()
     fWriteDNFConfBackup.close()
     fReadDNFConf.close()
 
     #Backup .bashrc
-    fReadBASHRC=open('~/.bashrc', 'r')
-    fWriteBASHRCBackup=open('./.bashrc.bak', 'x')
+    fReadBASHRC = open('/home'+str(getpass.getuser())+'/.bashrc', 'r')
+    fWriteBASHRCBackup = open('./.bashrc.bak', 'x')
     fWriteBASHRCBackup.write(fReadBASHRC.read())
     fWriteBASHRCBackup.flush()
     fWriteBASHRCBackup.close()
     fReadBASHRC.close()
 
     #Backup grub
-    fReadgrub=open('/etc/default/grub', 'r')
-    fWritegrubBackup=open('./grub.bak', 'x')
+    fReadgrub = open('/etc/default/grub', 'r')
+    fWritegrubBackup = open('./grub.bak', 'x')
     fWritegrubBackup.write(fReadgrub.read())
     fWritegrubBackup.flush()
     fWritegrubBackup.close()
     fReadgrub.close()
     log("Đã backup xong...")
+
 
 print('Chào mừng bạn đến với script init Fedora Linux viết bởi davidhoang05022009(Hoàng Minh Thiên)\n')
 print('Bạn cần chạy lệnh này dưới quyền root. Nếu không biết bạn đã ở quyền root hay chưa, hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 -m post-install\'')
