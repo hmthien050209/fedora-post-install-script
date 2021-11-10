@@ -26,9 +26,9 @@ def getDraculaTheme():
     log('Đang tải Dracula theme giúp cho giao diện trông đẹp hơn')
     os.system('axel -n 20 https://github.com/dracula/gtk/archive/master.zip')
     ZipFile('./gtk-master.zip', 'r') .extractall('/usr/share/themes/')
-    os.system('gsettings set org.gnome.desktop.interface gtk-theme \"Dracula\" && gsettings set org.gnome.desktop.wm.preferences theme \"Dracula\"')
+    os.system('gsettings set org.gnome.desktop.interface gtk-theme \"Gtk-master\" && gsettings set org.gnome.desktop.wm.preferences theme \"Gtk-master\"')
     os.system(
-        'gsettings set org.gnome.desktop.wm.preferences button-layout \'close,minimize,maximize:\'')
+        'gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \"{\'Gtk/DecorationLayout\': <\':minimize,maximize,close\'>}\"')
 
 
 def doUpdateAndUpgrade():
@@ -93,7 +93,7 @@ def uninstallPlymouthAndEnableVerboseBootMode():
 
 def cleanUp():
     log('Đang dọn một số tập tin tạm thời...')
-    os.system('rm -rf ./CascadiaCode-2110.31 ./gtk-master.zip')
+    os.system('sudo rm -rf ./CascadiaCode-2110.31 ./gtk-master.zip')
 
 
 def backUp():
