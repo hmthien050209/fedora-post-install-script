@@ -10,7 +10,8 @@ def log(stage):
 
 
 def getUserLanguage():
-    lang = input("[1] Tiếng Việt/Vietnamese\n[2] Tiếng Anh/English")
+    lang = int(
+        input("[1] Tiếng Việt/Vietnamese\n[2] Tiếng Anh/English\nEnter your choice: "))
     if lang == 1:
         return "vi"
     elif lang == 2:
@@ -19,7 +20,9 @@ def getUserLanguage():
         print("Invalid input, aborting...")
         sys.exit()
 
+
 userLanguage = getUserLanguage()
+
 
 def installPowerline():
     log(CascadiaFontsInstallMSG[userLanguage])
@@ -31,14 +34,15 @@ def installPowerline():
     fo.close()
     fRead.close()
     os.system('axel -n 20 https://github.com/microsoft/cascadia-code/releases/download/v2110.31/CascadiaCode-2110.31.zip')
-    ZipFile('./CascadiaCode-2110.31.zip').extractall('./')
+    ZipFile('./CascadiaCode-2110.31.zip').extractall('./CascadiaCode-2110.31')
     os.system(
         'sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts && fc-cache -f -v')
 
 
 def getDraculaTheme():
     log(getDraculaThemeMSG[userLanguage])
-    os.system('axel -n 20 https://github.com/dracula/gtk/archive/master.zip')
+    os.system(
+        'axel https://github.com/dracula/gtk/archive/master.zip -o gtk-master.zip')
     ZipFile('./gtk-master.zip', 'r') .extractall('/usr/share/themes/')
     os.system('gsettings set org.gnome.desktop.interface gtk-theme \'gtk-master\' && gsettings set org.gnome.desktop.wm.preferences theme \'gtk-master\'')
     os.system(
@@ -106,7 +110,8 @@ def uninstallPlymouthAndEnableVerboseBootMode():
 
 def cleanUp():
     log(CleanUpMSG[userLanguage])
-    os.system('sudo rm -rf ./CascadiaCode-2110.31 ./gtk-master.zip')
+    os.system(
+        'sudo rm -rf ./CascadiaCode-2110.31 ./CascadiaCode-2110.31.zip ./gtk-master.zip')
 
 
 def backUp():
@@ -140,7 +145,7 @@ def backUp():
 
     #Backup grub
     #Backup .bashrc
-    fReadgrub = open(str(os.path.expanduser('~'))+'/.grub', 'r')
+    fReadgrub = open('/etc/default/grub', 'r')
     fWritegrubBackup = None
     # Check if the file exists to make sure that the FileExistsError will never happen...
     if os.path.exists('./.grub'):
@@ -151,6 +156,7 @@ def backUp():
     fWritegrubBackup.flush()
     fWritegrubBackup.close()
     fReadgrub.close()
+
 
 print(greeting[userLanguage])
 print(sudoReminder[userLanguage])
