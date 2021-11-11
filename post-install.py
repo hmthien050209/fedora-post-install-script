@@ -28,7 +28,7 @@ def installPowerline():
     log(CascadiaFontsInstallMSG[userLanguage])
     os.system('sudo dnf install powerline -y')
     fRead = open('./.bashrc', 'r')
-    fo = open(str(os.path.expanduser('~'))+'/.bashrc', 'w')
+    fo = open(str(os.path.expanduser('~'))+'/.bashrc', 'a')
     fo.write(fRead.read())
     fo.flush()
     fo.close()
@@ -37,6 +37,9 @@ def installPowerline():
     ZipFile('./CascadiaCode-2110.31.zip').extractall('./CascadiaCode-2110.31')
     os.system(
         'sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts && fc-cache -f -v')
+    os.system('source ~/.bashrc')
+    #set the terminal font
+    os.system('gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_system_font --type=boolean false; gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string \"Cascadia Code PL\"')
 
 
 def getDraculaTheme():
@@ -91,7 +94,8 @@ def installCodecs():
 
 def installTools():
     log(ToolsInstallMSG[userLanguage])
-    os.system('sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks -y')
+    os.system(
+        'sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks GConf2 -y')
 
 
 def uninstallPlymouthAndEnableVerboseBootMode():
@@ -111,7 +115,7 @@ def uninstallPlymouthAndEnableVerboseBootMode():
 def cleanUp():
     log(CleanUpMSG[userLanguage])
     os.system(
-        'sudo rm -rf ./CascadiaCode-2110.31 ./CascadiaCode-2110.31.zip ./gtk-master.zip')
+        'sudo rm -rf ./CascadiaCode-2110.31 ./CascadiaCode-2110.31.zip ./gtk-master.zip ./grub.bak ./dnf.conf.bak ./.bashrc.bak')
 
 
 def backUp():
@@ -119,12 +123,7 @@ def backUp():
 
     #Backup dnf.conf
     fReadDNFConf = open('/etc/dnf/dnf.conf', 'r')
-    fWriteDNFConfBackup = None
-    # Check if the file exists to make sure that the FileExistsError will never happen...
-    if os.path.exists('./dnf.conf.bak'):
-        fWriteDNFConfBackup = open('./dnf.conf.bak', 'w')
-    else:
-        fWriteDNFConfBackup = open('./dnf.conf.bak', 'x')
+    fWriteDNFConfBackup = open('./dnf.conf.bak', 'x')
     fWriteDNFConfBackup.write(fReadDNFConf.read())
     fWriteDNFConfBackup.flush()
     fWriteDNFConfBackup.close()
@@ -132,12 +131,7 @@ def backUp():
 
     #Backup .bashrc
     fReadBASHRC = open(str(os.path.expanduser('~'))+'/.bashrc', 'r')
-    fWriteBASHRCBackup = None
-    # Check if the file exists to make sure that the FileExistsError will never happen...
-    if os.path.exists('./.bashrc'):
-        fWriteBASHRCBackup = open('./.bashrc.bak', 'w')
-    else:
-        fWriteBASHRCBackup = open('./.bashrc.bak', 'x')
+    fWriteBASHRCBackup = open('./.bashrc.bak', 'x')
     fWriteBASHRCBackup.write(fReadBASHRC.read())
     fWriteBASHRCBackup.flush()
     fWriteBASHRCBackup.close()
@@ -146,12 +140,7 @@ def backUp():
     #Backup grub
     #Backup .bashrc
     fReadgrub = open('/etc/default/grub', 'r')
-    fWritegrubBackup = None
-    # Check if the file exists to make sure that the FileExistsError will never happen...
-    if os.path.exists('./.grub'):
-        fWritegrubBackup = open('./grub.bak', 'w')
-    else:
-        fWritegrubBackup = open('./grub.bak', 'x')
+    fWritegrubBackup = open('./grub.bak', 'x')
     fWritegrubBackup.write(fReadgrub.read())
     fWritegrubBackup.flush()
     fWritegrubBackup.close()
@@ -163,6 +152,7 @@ print(sudoReminder[userLanguage])
 confirm = input(confirmation[userLanguage] + ' [y(es)/n(o)]: ')
 if confirm.lower() == 'y' or confirm.lower() == 'yes':
     print(acceptedMSG[userLanguage])
+    cleanUp()
     backUp()
     doUpdateAndUpgrade()
     writeNewDNFConfig()
