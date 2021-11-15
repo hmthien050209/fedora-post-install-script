@@ -81,7 +81,7 @@ def enableFlathub():
 
 def enableSnapd():
     log(EnableSnapdMSG[userLanguage])
-    os.system('sudo dnf install snapd -y')
+    os.system('sudo dnf install snapd -y && sudo ln -s /var/lib/snapd/snap /snap')
 
 
 def installCodecs():
