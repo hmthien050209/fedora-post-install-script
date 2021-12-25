@@ -56,8 +56,8 @@ greeting = {
     "vi": "Chào mừng bạn đến với script Post-install dành cho Fedora Linux viết bởi davidhoang05022009(Hoàng Minh Thiên)\n"
 }
 sudoReminder = {
-    "en": "If you're not sure that did you run this script as root, rerun it by typing \'sudo python3 post-install\' in the Terminal",
-    "vi": "Bạn cần chạy lệnh này dưới quyền root. Nếu không biết bạn đã ở quyền root hay chưa, hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 post-install\'"
+    "en": "If you're not sure that did you run this script as root or not, rerun it by typing \'sudo python3 ./post-install.py\' in the Terminal",
+    "vi": "Bạn cần chạy lệnh này dưới quyền root. Nếu không biết bạn đã ở quyền root hay chưa, hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 ./post-install.py\'"
 }
 acceptedMSG = {
     "en": "OK, let the script do its works, it won't take long...",
