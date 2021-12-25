@@ -6,10 +6,7 @@ import sys
 
 
 def log(stage):
-    output = '[' + str(datetime.datetime.now()) + ']: ' + stage
-    print(output)
-    fWriteLog = open('./.log', '+')
-    fWriteLog.writelines(output)
+    print('[' + str(datetime.datetime.now()) + ']: ' + stage)
 
 
 def getUserLanguage():
