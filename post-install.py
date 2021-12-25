@@ -97,6 +97,21 @@ def installTools():
     os.system(
         'sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks -y')
 
+def installIbusBamboo(): # only needed for Vietnamese
+    log("Đang cài bộ gõ tiếng Việt ibus-bamboo để hỗ trợ các bạn gõ tiếng Việt")
+
+    # check the version of Fedora
+    fedora_version = 0
+    os.system('rpm -E %fedora > fedora-version')
+    fRead = open('./fedora-version', 'r')
+    if int(fRead.read()) > 33: fedora_version = 33
+    else: fedora_version = int(fRead.read())
+    
+    #install it and add it to input sources
+    os.system('sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_'+ fedora_version +'/home:lamlng.repo')
+    os.system('sudo dnf install ibus-bamboo -y')
+    os.system('gsettings set org.gnome.desktop.input-sources sources [(\'xkb\', \'us\'), (\'ibus\', \'Bamboo::Us\')]')
+    os.system('gsettings set org.gnome.desktop.interface gtk-im-module \'ibus\'')
 
 def uninstallPlymouthAndEnableVerboseBootMode():
     log(CoolBootModeMSG[userLanguage])
@@ -137,6 +152,7 @@ if confirm.lower() == 'y' or confirm.lower() == 'yes':
     uninstallPlymouthAndEnableVerboseBootMode()
     getDraculaTheme()
     installPowerline()
+    if userLanguage == 'vi': installIbusBamboo()
     cleanUp()
     confirm2 = input(
         doneMSG[userLanguage] + ' [y(es)/n(o)]: ')
