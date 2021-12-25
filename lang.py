@@ -22,10 +22,6 @@ EnableFlathubMSG = {
     "en": "Enabling Flathub...",
     "vi": "Đang bật Flathub để tải các phần mềm mã nguồn đóng/trả phí..."
 }
-EnableSnapdMSG = {
-    "en": "Enabling snapd",
-    "vi": "Đang bật snapd để tải các phần mềm mã nguồn đóng/trả phí..."
-}
 CodecsInstallMSG = {
     "en": "Installing Multimedia codecs...",
     "vi": "Đang tải một số codec/thư viện cần thiết cho Multimedia..."

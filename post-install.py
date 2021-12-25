@@ -78,12 +78,6 @@ def enableFlathub():
     os.system(
         'flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo')
 
-
-def enableSnapd():
-    log(EnableSnapdMSG[userLanguage])
-    os.system('sudo dnf install snapd -y; sudo ln -s /var/lib/snapd/snap /snap')
-
-
 def installCodecs():
     log(CodecsInstallMSG[userLanguage])
     os.system(
@@ -147,7 +141,6 @@ if confirm.lower() == 'y' or confirm.lower() == 'yes':
     installTools()
     enableRPMFusion()
     enableFlathub()
-    enableSnapd() # this one sucks in my opinion but required to install some apps like Spotify, IntelliJ IDEA, etc.
     installCodecs()
     uninstallPlymouthAndEnableVerboseBootMode()
     getDraculaTheme()
