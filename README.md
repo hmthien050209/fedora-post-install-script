@@ -30,4 +30,4 @@ sudo python3 ./post-install.py
 4. The [TechHut YouTube channel](https://www.youtube.com/c/TechHutHD) for the video ['5 Things You MUST DO After Installing Fedora 35'](https://www.youtube.com/watch?v=-NwWE9YFFIg)
 5. The official Fedora Magazine for the guide [how to install Powerline](https://fedoramagazine.org/add-power-terminal-powerline/)
 6. The [StackOverflow](https://stackoverflow.com), [AskUbuntu](https://askubuntu.com) community for helping me writing themes, fonts install script
-7. [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) and [OpenBuildService](https://software.opensuse.org//download.html?project=home%3Alamlng&package=ibus-bamboo) for the Vietnamese input service on Linux
+7. [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) and [OpenBuildService](https://software.opensuse.org//download.html?project=home%3Alamlng&package=ibus-bamboo) for the Vietnamese input service on Linux(thanks to OpenBuildService for the Fedora ibus-bamboo build)
