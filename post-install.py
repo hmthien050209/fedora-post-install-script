@@ -145,6 +145,7 @@ if confirm.lower() == 'y' or confirm.lower() == 'yes':
     uninstallPlymouthAndEnableVerboseBootMode()
     getDraculaTheme()
     installPowerline()
+    installFonts()
     if userLanguage == 'vi': installIbusBamboo()
     cleanUp()
     confirm2 = input(
