@@ -26,20 +26,18 @@ userLanguage = getUserLanguage()
 
 def installPowerline():
     log(CascadiaFontsInstallMSG[userLanguage])
+    
     os.system('sudo dnf install powerline -y')
     fRead = open('./.bashrc', 'r')
-    fo = open(str(os.path.expanduser('~'))+'/.bashrc', 'a')
-    fo.write(fRead.read())
-    fo.flush()
-    fo.close()
+    os.system('echo ' + fRead.read() + '>> ~/.bashrc')
     fRead.close()
     os.system('axel -n 20 https://github.com/microsoft/cascadia-code/releases/download/v2110.31/CascadiaCode-2110.31.zip')
     ZipFile('./CascadiaCode-2110.31.zip').extractall('./CascadiaCode-2110.31')
     os.system(
-        'sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts && fc-cache -f -v')
+        'sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts; fc-cache -f -v')
     os.system('source ~/.bashrc')
-    #set the terminal font
-    os.system('gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_system_font --type=boolean false; gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string \"Cascadia Code PL\"')
+    # Set the terminal font
+    os.system('dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf')
 
 
 def getDraculaTheme():
@@ -47,24 +45,25 @@ def getDraculaTheme():
     os.system(
         'axel https://github.com/dracula/gtk/archive/master.zip -o gtk-master.zip')
     ZipFile('./gtk-master.zip', 'r') .extractall('/usr/share/themes/')
-    os.system('gsettings set org.gnome.desktop.interface gtk-theme \'gtk-master\' && gsettings set org.gnome.desktop.wm.preferences theme \'gtk-master\'')
+    os.system('gsettings set org.gnome.desktop.interface gtk-theme \'gtk-master\'; gsettings set org.gnome.desktop.wm.preferences theme \'gtk-master\'')
     os.system(
         'gsettings set org.gnome.desktop.wm.preferences button-layout \":minimize,maximize,close\"')
 
+def installFonts():
+    os.system('sudo dnf install google-*-fonts -x *cjk* --skip-broken -y')
+    os.system('gsettings set org.gnome.desktop.interface font-name \'Noto Sans Medium 11\'')
+    os.system('gsettings set org.gnome.desktop.interface document-font-name \'Noto Sans Regular 11\'')
+    os.system('gsettings set org.gnome.desktop.interface monospace-font-name \'Cascadia Code PL 13\'')
+    os.system('gsettings set org.gnome.desktop.wm.preferences titlebar-font \'Noto Sans Bold 11\'')
 
-def doUpdateAndUpgrade():
+def doUpdate():
     log(UpdateMSG[userLanguage])
-    os.system('sudo dnf update -y && sudo dnf upgrade -y')
+    os.system('sudo dnf update -y')
 
 
 def writeNewDNFConfig():
     log(DNFWriteMSG[userLanguage])
-    fRead = open('./dnf.conf', 'r')
-    fo = open('/etc/dnf/dnf.conf', 'w')
-    fo.write(fRead.read())
-    fo.flush()
-    fo.close()
-    fRead.close()
+    os.system("sudo cp ./dnf.conf /etc/dnf/dnf.conf")
 
 
 def enableRPMFusion():
@@ -81,7 +80,7 @@ def enableFlathub():
 
 def enableSnapd():
     log(EnableSnapdMSG[userLanguage])
-    os.system('sudo dnf install snapd -y && sudo ln -s /var/lib/snapd/snap /snap')
+    os.system('sudo dnf install snapd -y; sudo ln -s /var/lib/snapd/snap /snap')
 
 
 def installCodecs():
@@ -95,57 +94,30 @@ def installCodecs():
 def installTools():
     log(ToolsInstallMSG[userLanguage])
     os.system(
-        'sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks GConf2 -y')
+        'sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks -y')
 
 
 def uninstallPlymouthAndEnableVerboseBootMode():
     log(CoolBootModeMSG[userLanguage])
-    fRead = open('./grub', 'r')
-    fo = open('/etc/default/grub', 'w')
-    fo.write(fRead.read())
-    fo.flush()
-    fo.close()
+    os.system("sudo cp ./grub /etc/default/grub")
     if os.path.exists('/sys/firmware/efi'):
         os.system('sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg')
     else:
         os.system('sudo grub2-mkconfig -o /boot/grub2/grub.cfg')
-    os.system('sudo plymouth-set-default-theme details && sudo dracut -f')
+    os.system('sudo plymouth-set-default-theme details; sudo dracut -f')
 
 
 def cleanUp():
     log(CleanUpMSG[userLanguage])
     os.system(
-        'sudo rm -rf ./CascadiaCode-2110.31 ./CascadiaCode-2110.31.zip ./gtk-master.zip ./grub.bak ./dnf.conf.bak ./.bashrc.bak')
+        'sudo rm -rf ./CascadiaCode-* ./gtk-master.zip')
 
 
 def backUp():
     log(BackUpMSG[userLanguage])
-
-    #Backup dnf.conf
-    fReadDNFConf = open('/etc/dnf/dnf.conf', 'r')
-    fWriteDNFConfBackup = open('./dnf.conf.bak', 'x')
-    fWriteDNFConfBackup.write(fReadDNFConf.read())
-    fWriteDNFConfBackup.flush()
-    fWriteDNFConfBackup.close()
-    fReadDNFConf.close()
-
-    #Backup .bashrc
-    fReadBASHRC = open(str(os.path.expanduser('~'))+'/.bashrc', 'r')
-    fWriteBASHRCBackup = open('./.bashrc.bak', 'x')
-    fWriteBASHRCBackup.write(fReadBASHRC.read())
-    fWriteBASHRCBackup.flush()
-    fWriteBASHRCBackup.close()
-    fReadBASHRC.close()
-
-    #Backup grub
-    #Backup .bashrc
-    fReadgrub = open('/etc/default/grub', 'r')
-    fWritegrubBackup = open('./grub.bak', 'x')
-    fWritegrubBackup.write(fReadgrub.read())
-    fWritegrubBackup.flush()
-    fWritegrubBackup.close()
-    fReadgrub.close()
-
+    os.system("sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak")
+    os.system("sudo cp ~/.bashrc ~/.bashrc.bak")
+    os.system("sudo cp /etc/default/grub /etc/default/grub.bak")
 
 print(greeting[userLanguage])
 print(sudoReminder[userLanguage])
@@ -154,12 +126,12 @@ if confirm.lower() == 'y' or confirm.lower() == 'yes':
     print(acceptedMSG[userLanguage])
     cleanUp()
     backUp()
-    doUpdateAndUpgrade()
     writeNewDNFConfig()
+    doUpdate()
     installTools()
     enableRPMFusion()
     enableFlathub()
-    enableSnapd()
+    enableSnapd() # this one sucks in my opinion but required to install some apps like Spotify, IntelliJ IDEA, etc.
     installCodecs()
     uninstallPlymouthAndEnableVerboseBootMode()
     getDraculaTheme()
