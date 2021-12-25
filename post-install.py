@@ -44,12 +44,13 @@ def getDraculaTheme():
     log(getDraculaThemeMSG[userLanguage])
     os.system(
         'axel https://github.com/dracula/gtk/archive/master.zip -o gtk-master.zip')
-    ZipFile('./gtk-master.zip', 'r') .extractall('/usr/share/themes/')
+    ZipFile('./gtk-master.zip', 'r').extractall('/usr/share/themes/')
     os.system('gsettings set org.gnome.desktop.interface gtk-theme \'gtk-master\'; gsettings set org.gnome.desktop.wm.preferences theme \'gtk-master\'')
     os.system(
         'gsettings set org.gnome.desktop.wm.preferences button-layout \":minimize,maximize,close\"')
 
 def installFonts():
+    log(fontsInstallMSG[userLanguage])
     os.system('sudo dnf install google-*-fonts -x *cjk* --skip-broken -y')
     os.system('gsettings set org.gnome.desktop.interface font-name \'Noto Sans Medium 11\'')
     os.system('gsettings set org.gnome.desktop.interface document-font-name \'Noto Sans Regular 11\'')

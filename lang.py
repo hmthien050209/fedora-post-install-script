@@ -1,5 +1,5 @@
 CascadiaFontsInstallMSG = {
-    "en": "Installing Cascadia Code Fonts and Powerline to make yout Terminal better...",
+    "en": "Installing Cascadia Code Fonts and Powerline to make your Terminal better...",
     "vi": "Đang cài PowerLine và font Cascadia Code giúp Terminal đẹp hơn..."
 }
 getDraculaThemeMSG = {
@@ -35,6 +35,10 @@ ToolsInstallMSG = {
     "vi": "Đang cài một số tool cần thiết..."
 }
 
+fontsInstallMSG ={
+    "en": "Installing Google's fonts to make your GNOME Desktop prettier",
+    "vi": "Đang cài một số font của Google để làm đẹp Desktop của bạn"
+}
 CoolBootModeMSG = {  # Just for fun
     "en": "Doing some magics that can help you become a cool guy :)",
     "vi": "Đang làm một bí thuật giúp bạn ngầu hơn khi xài Linux :)"
