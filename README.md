@@ -16,7 +16,7 @@ sudo python3 ./post-install.py
 
 # or with logging:
 
-sudo python 3 ./post-install.py | tee -a post-install.log
+sudo python3 ./post-install.py | tee -a post-install.log
 ```
 
 ## What does this script do?
