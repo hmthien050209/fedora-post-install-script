@@ -144,6 +144,7 @@ def backUp():
     os.system("sudo cp /etc/default/grub /etc/default/grub.bak")
 
 
+print("fedora-post-install-script\nCopyright (C) 2021 Hoàng Minh Thiên\nThis program comes with ABSOLUTELY NO WARRANTY\nThis is free software, and you are welcome to redistribute it\nunder certain conditions")
 print(greeting[userLanguage])
 print(sudoReminder[userLanguage])
 confirm = input(confirmation[userLanguage] + ' [y(es)/n(o)]: ')

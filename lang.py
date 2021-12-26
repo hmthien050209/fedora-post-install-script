@@ -48,8 +48,8 @@ BackUpMSG = {
     "vi": "Đang backup lại một số file phòng trường hợp máy bị lỗi..."
 }
 greeting = {
-    "en": "Welcome to Fedora Post-install script written by davidhoang05022009(Hoàng Minh Thiên)",
-    "vi": "Chào mừng bạn đến với script Post-install dành cho Fedora Linux viết bởi davidhoang05022009(Hoàng Minh Thiên)\n"
+    "en": "Welcome to Fedora post-install script written by davidhoang05022009(Hoàng Minh Thiên)",
+    "vi": "Chào mừng bạn đến với script post-install dành cho Fedora Linux viết bởi davidhoang05022009(Hoàng Minh Thiên)\n"
 }
 sudoReminder = {
     "en": "If you're not sure that did you run this script as root or not, rerun it by typing \'sudo python3 ./post-install.py\' in the Terminal",
