@@ -89,7 +89,7 @@ def installCodecs():
 def installTools():
     log(ToolsInstallMSG[userLanguage])
     os.system(
-        'sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks -y')
+        'sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks deltarpm -y')
 
 def installIbusBamboo(): # only needed for Vietnamese
     log("Đang cài bộ gõ tiếng Việt ibus-bamboo để hỗ trợ các bạn gõ tiếng Việt")
