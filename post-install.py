@@ -29,7 +29,7 @@ def installPowerline():
 
     os.system('sudo dnf install powerline -y')
     fRead = open('./.bashrc', 'r')
-    os.system('echo ' + fRead.read() + '>> ~/.bashrc')
+    os.system('echo \"' + fRead.read() + '\" >> ~/.bashrc')
     fRead.close()
     os.system('axel -n 20 https://github.com/microsoft/cascadia-code/releases/download/v2110.31/CascadiaCode-2110.31.zip')
     ZipFile('./CascadiaCode-2110.31.zip').extractall('./CascadiaCode-2110.31')
