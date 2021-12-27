@@ -114,7 +114,7 @@ def installTools():
     os.system('sudo sh -c \'echo -e \"[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc\" > /etc/yum.repos.d/vscode.repo\'')
     os.system('sudo dnf update -y')
     os.system(
-        'sudo dnf install htop neofetch xclip axel git gnome-tweaks deltarpm micro code -y')
+        'sudo dnf install htop neofetch xclip axel gnome-tweaks deltarpm micro code -y')
 
 
 def installIbusBamboo():  # only needed for Vietnamese
