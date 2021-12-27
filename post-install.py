@@ -131,10 +131,10 @@ def installIbusBamboo():  # only needed for Vietnamese
 
     # install it and add it to input sources
     os.system('sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_' +
-              fedora_version + '/home:lamlng.repo')
+              str(fedora_version) + '/home:lamlng.repo')
     os.system('sudo dnf install ibus-bamboo -y')
     os.system(
-        'gsettings set org.gnome.desktop.input-sources sources [(\'xkb\', \'us\'), (\'ibus\', \'Bamboo::Us\')]')
+        'gsettings set org.gnome.desktop.input-sources sources \'[(\'xkb\', \'us\'), (\'ibus\', \'Bamboo::Us\')]\'')
     os.system('gsettings set org.gnome.desktop.interface gtk-im-module \'ibus\'')
 
 
@@ -151,7 +151,7 @@ def uninstallPlymouthAndEnableVerboseBootMode():
 def cleanUp():
     log(CleanUpMSG[userLanguage])
     os.system(
-        'sudo rm -rf ./CascadiaCode-* ./gtk-master.zip')
+        'sudo rm -rf ./CascadiaCode-* ./gtk-master.zip ./fedora-version')
 
 
 def backUp():
