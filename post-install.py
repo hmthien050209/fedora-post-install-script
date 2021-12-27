@@ -134,7 +134,7 @@ def installIbusBamboo():  # only needed for Vietnamese
               str(fedora_version) + '/home:lamlng.repo')
     os.system('sudo dnf install ibus-bamboo -y')
     os.system(
-        'gsettings set org.gnome.desktop.input-sources sources \'[(\'xkb\', \'us\'), (\'ibus\', \'Bamboo::Us\')]\'')
+        'gsettings set org.gnome.desktop.input-sources sources \"[(\'xkb\', \'us\'), (\'ibus\', \'Bamboo::Us\')]\"')
     os.system('gsettings set org.gnome.desktop.interface gtk-im-module \'ibus\'')
 
 
