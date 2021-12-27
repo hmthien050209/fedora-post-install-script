@@ -1,6 +1,6 @@
 """
 fedora-post-install-script
-Copyright (C) 2021 Hoàng Minh Thiên
+Copyright (C) 2021 davidhoang05022009(Hoàng Minh Thiên)
 This program comes with ABSOLUTELY NO WARRANTY
 This is free software, and you are welcome to redistribute it
 under certain conditions
@@ -167,8 +167,8 @@ def installDNFAutomatic():  # this one is for automatic updates on Fedora
     os.system('systemctl enable --now dnf-automatic.timer')
 
 
-print("fedora-post-install-script\nCopyright (C) 2021 Hoàng Minh Thiên\nThis program comes with ABSOLUTELY NO WARRANTY\nThis is free software, and you are welcome to redistribute it\nunder certain conditions")
 print(greeting[userLanguage])
+print("fedora-post-install-script\nCopyright (C) 2021 davidhoang05022009(Hoàng Minh Thiên)\nThis program comes with ABSOLUTELY NO WARRANTY\nThis is free software, and you are welcome to redistribute it\nunder certain conditions")
 if not is_root():
     print(sudoReminder[userLanguage])
     sys.exit()
