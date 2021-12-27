@@ -1,3 +1,13 @@
+"""
+fedora-post-install-script
+Copyright (C) 2021 Hoàng Minh Thiên
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it
+under certain conditions
+
+Licensed under GPLv3 License
+"""
+
 import datetime
 import os
 from zipfile import ZipFile
@@ -7,6 +17,10 @@ import sys
 
 def log(stage):
     print('[' + str(datetime.datetime.now()) + ']: ' + stage)
+
+
+def is_root():
+    return os.geteuid() == 0
 
 
 def getUserLanguage():
@@ -53,7 +67,7 @@ def getDraculaTheme():
 
 def installFonts():
     log(fontsInstallMSG[userLanguage])
-    os.system('sudo dnf install google-*-fonts -x *cjk* --skip-broken -y')
+    os.system('sudo dnf install google-noto-sans-fonts -y')
     os.system(
         'gsettings set org.gnome.desktop.interface font-name \'Noto Sans Medium 11\'')
     os.system(
@@ -96,8 +110,11 @@ def installCodecs():
 
 def installTools():
     log(ToolsInstallMSG[userLanguage])
+    os.system('sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc')
+    os.system('sudo sh -c \'echo -e \"[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc\" > /etc/yum.repos.d/vscode.repo\'')
+    os.system('sudo dnf update -y')
     os.system(
-        'sudo dnf install htop neofetch xclip gedit axel git gnome-tweaks deltarpm -y')
+        'sudo dnf install htop neofetch xclip axel git gnome-tweaks deltarpm micro code -y')
 
 
 def installIbusBamboo():  # only needed for Vietnamese
@@ -112,7 +129,7 @@ def installIbusBamboo():  # only needed for Vietnamese
     else:
         fedora_version = int(fRead.read())
 
-    #install it and add it to input sources
+    # install it and add it to input sources
     os.system('sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_' +
               fedora_version + '/home:lamlng.repo')
     os.system('sudo dnf install ibus-bamboo -y')
@@ -144,9 +161,18 @@ def backUp():
     os.system("sudo cp /etc/default/grub /etc/default/grub.bak")
 
 
+def installDNFAutomatic():  # this one is for automatic updates on Fedora
+    os.system('sudo dnf install dnf-automatic -y')
+    os.system('sudo cp ./automatic.conf /etc/dnf/automatic.conf')
+    os.system('systemctl enable --now dnf-automatic.timer')
+
+
 print("fedora-post-install-script\nCopyright (C) 2021 Hoàng Minh Thiên\nThis program comes with ABSOLUTELY NO WARRANTY\nThis is free software, and you are welcome to redistribute it\nunder certain conditions")
 print(greeting[userLanguage])
-print(sudoReminder[userLanguage])
+if not is_root():
+    print(sudoReminder[userLanguage])
+    sys.exit()
+
 confirm = input(confirmation[userLanguage] + ' [y(es)/n(o)]: ')
 if confirm.lower() == 'y' or confirm.lower() == 'yes':
     print(acceptedMSG[userLanguage])
@@ -159,6 +185,7 @@ if confirm.lower() == 'y' or confirm.lower() == 'yes':
     enableFlathub()
     installCodecs()
     uninstallPlymouthAndEnableVerboseBootMode()
+    installDNFAutomatic()
     getDraculaTheme()
     installPowerline()
     installFonts()

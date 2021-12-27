@@ -1,3 +1,13 @@
+"""
+fedora-post-install-script
+Copyright (C) 2021 Hoàng Minh Thiên
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it
+under certain conditions
+
+Licensed under GPLv3 License
+"""
+
 CascadiaFontsInstallMSG = {
     "en": "Installing Cascadia Code Fonts and Powerline to make your Terminal better...",
     "vi": "Đang cài PowerLine và font Cascadia Code giúp Terminal đẹp hơn..."
@@ -31,9 +41,9 @@ ToolsInstallMSG = {
     "vi": "Đang cài một số tool cần thiết..."
 }
 
-fontsInstallMSG ={
-    "en": "Installing Google's fonts to make your GNOME Desktop prettier",
-    "vi": "Đang cài một số font của Google để làm đẹp Desktop của bạn"
+fontsInstallMSG = {
+    "en": "Installing Google Noto Sans Fonts to make your GNOME Desktop prettier",
+    "vi": "Đang cài font Noto Sans của Google để làm đẹp Desktop của bạn"
 }
 CoolBootModeMSG = {  # Just for fun
     "en": "Doing some magics that can help you become a cool guy :)",
@@ -52,8 +62,8 @@ greeting = {
     "vi": "Chào mừng bạn đến với script post-install dành cho Fedora Linux viết bởi davidhoang05022009(Hoàng Minh Thiên)\n"
 }
 sudoReminder = {
-    "en": "If you're not sure that did you run this script as root or not, rerun it by typing \'sudo python3 ./post-install.py\' in the Terminal",
-    "vi": "Bạn cần chạy lệnh này dưới quyền root. Nếu không biết bạn đã ở quyền root hay chưa, hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 ./post-install.py\'"
+    "en": "Hey, look like you didn't run the script with root/sudo permission. Re-run it by typing \'sudo python3 ./post-install.py\' in the Terminal",
+    "vi": "Có vẻ bạn chưa chạy script với quyền root/sudo. Hãy hủy và khởi động lại chương trình bằng lệnh \'sudo python3 ./post-install.py\'"
 }
 acceptedMSG = {
     "en": "OK, let the script do its works, it won't take long...",
