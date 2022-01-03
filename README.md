@@ -12,7 +12,7 @@ Licensed under GPLv3 License
 
 ## How to run?
 
-1. Make sure `git`, `dnf` and `python3` are usable
+1. Make sure `git` and `dnf` are usable
 
 2. Open Terminal, type:
 
@@ -24,11 +24,8 @@ cd ./fedora-post-install-script
 3. Run it:
 
 ```sh
-sudo python3 ./post-install.py
-
-# or with logging:
-
-sudo python3 ./post-install.py 2>&1 | tee -a post-install.log
+chmod +x ./post-install.sh
+./post-install.sh
 ```
 
 ## What does this script do?
@@ -44,7 +41,7 @@ sudo python3 ./post-install.py 2>&1 | tee -a post-install.log
 
 ## Found an issue?
 
-Create an issue, re-run the script with logging, then upload the log file, ~/.bashrc, /etc/default/grub and /etc/dnf/dnf.conf
+Create an issue, then upload ~/.bashrc, /etc/default/grub and /etc/dnf/dnf.conf
 
 ## Special thanks to:
 
