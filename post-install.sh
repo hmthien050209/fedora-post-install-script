@@ -42,10 +42,11 @@ OPTIONS=(
     6  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
     7  "Install Powerline"
     8  "Install Dracula theme"
-    9  "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
-    10 "Enable dnf-automatic(Automatic updates)"
-    11 "Reboot"
-    12 "Quit"
+    9  "Recover maximize, minimize button"
+    10 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
+    11 "Enable dnf-automatic(Automatic updates)"
+    12 "Reboot"
+    13 "Quit"
 )
 
 
@@ -138,7 +139,12 @@ while true; do
         notify-send "Installed Dracula theme"
         ;;
 
-        9) echo "Installing ibus-bamboo"
+        9) echo "Recovering maximize, minimize button"
+        gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+        notify-send "Recovered maximiaze, minimize button"
+        ;;
+
+        10) echo "Installing ibus-bamboo"
         if [ "$(rpm -E %fedora)" -gt 33 ];
         then
             sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_33/home:lamlng.repo
@@ -151,18 +157,18 @@ while true; do
         notify-send "Installed ibus-bamboo"
         ;;
         
-        10) echo "Enabling dnf-automatic(Automatic updates)"
+        11) echo "Enabling dnf-automatic(Automatic updates)"
         sudo dnf install dnf-automatic -y
         sudo cp ./automatic.conf /etc/dnf/automatic.conf
         sudo systemctl enable --now dnf-automatic.timer
         notify-send "Enabled dnf-automatic"
         ;;
         
-        11)
+        12)
         sudo systemctl reboot
         ;;
 
-        12) exit 0
+        13) exit 0
         ;;
 
     esac

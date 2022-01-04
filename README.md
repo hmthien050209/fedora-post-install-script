@@ -37,7 +37,8 @@ chmod +x ./post-install.sh
 5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
 6. Disable "quiet" boot screen(make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
 7. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Powerline and Dracula theme
-8. Install ibus-bamboo for Vietnamese user(available when choosing Vietnamese)
+8. Recover the maximize and minimize button(disabled by default)
+9. Install ibus-bamboo
 
 ## Found an issue?
 
