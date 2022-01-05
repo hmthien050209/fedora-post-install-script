@@ -39,7 +39,7 @@ OPTIONS=(
     3  "Enable Flathub"
     4  "Install media codecs - Read more in README.md"
     5  "Disable quiet boot screen"
-    6  "Optimize booting time for Intel CPU"
+    6  "Optimize booting time for Intel CPUs" # This is from Clear Linux, my friends found out this and suggested me
     7  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
     8  "Install Powerline"
     9  "Install Dracula theme"
