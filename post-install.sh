@@ -39,20 +39,21 @@ OPTIONS=(
     3  "Enable Flathub"
     4  "Install media codecs - Read more in README.md"
     5  "Disable quiet boot screen"
-    6  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
-    7  "Install Powerline"
-    8  "Install Dracula theme"
-    9  "Recover maximize, minimize button"
-    10 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
-    11 "Enable dnf-automatic(Automatic updates)"
-    12 "Reboot"
-    13 "Quit"
+    6  "Optimize booting time for Intel CPU"
+    7  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
+    8  "Install Powerline"
+    9  "Install Dracula theme"
+    10 "Recover maximize, minimize button"
+    11 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
+    12 "Enable dnf-automatic(Automatic updates)"
+    13 "Reboot"
+    14 "Quit"
 )
 
 
 while true; do
     CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE" \
+                --backtitle "$BACKTITLE $(lscpu | grep -i "Model name:" | cut -d':' -f2- - | grep Intel)" \
                 --title "$TITLE" \
                 --nocancel \
                 --menu "$MENU_MSG" \
@@ -101,7 +102,26 @@ while true; do
         notify-send "Disabled quiet boot screen"
         ;;
 
-        6) echo "Installing Google Noto Sans fonts, Microsoft Cascadia Code fonts and apply it to system fonts"
+        6) echo "Checking if your CPU is Intel's CPU or not"
+        if [ "$(< /proc/cpuinfo grep "GenuineIntel" | head -1 | cut -d "e" -f 4-)" == "Intel" ]; 
+        then 
+            echo "Your CPU is Intel's CPU, let's optimize it"
+            lscpu | grep -i "Model name"
+            sudo cp /etc/default/grub /etc/default/grub.bak
+            echo -e "\nGRUB_CMDLINE_LINUX_DEFAULT=\"intel_idle.max_cstate=1 cryptomgr.notests initcall_debug intel_iommu=igfx_off no_timer_check noreplace-smp page_alloc.shuffle=1 rcupdate.rcu_expedited=1 tsc=reliable quiet splash\"" | sudo tee -a /etc/default/grub
+            if [ -f "/sys/firmware/efi" ]; 
+            then
+                sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+            else
+                sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+            fi
+            notify-send "Optimized booting time for your PC/Laptop"
+        else
+            echo "Your CPU is not Intel's CPU"
+        fi
+        ;;
+
+        7) echo "Installing Google Noto Sans fonts, Microsoft Cascadia Code fonts and apply it to system fonts"
         sudo dnf install google-noto-sans-fonts -y
         axel -n 20 $CASCADIA_CODE_URL
         unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
@@ -115,14 +135,23 @@ while true; do
         notify-send "Installed Google Noto Sans fonts, Microsoft Cascadia Code fonts and applied it to system fonts"
         ;;
 
-        7) echo "Installing Powerline"
+        8) echo "Installing Powerline"
+
         # Check if the Cascadia Code fonts exists for this
-        if fc-list | grep -q 'Cascadia Code';
+        if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
         then
-            axel -n 20 $CASCADIA_CODE_URL
-            unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
-            sudo mv ./CascadiaCode-2110.31/ttf/static/\* /usr/share/fonts
-            fc-cache -f -v
+            while true; do
+                read -rp "Seems like Microsoft Cascadia Code fonts(required by Powerline) are not installed. \nDo you want to install it? [y/n](Select 'n' if you have other Powerline-compatible fonts): " yn
+                case $yn in
+                    [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
+                    axel -n 20 $CASCADIA_CODE_URL
+                    unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
+                    sudo mv ./CascadiaCode-2110.31/ttf/static/\* /usr/share/fonts
+                    fc-cache -f -v
+                    ;;  
+                    [Nn]*) echo "Okie, continuing install Powerline" ;;
+                esac
+            done
         fi
         cp ~/.bashrc ~/.bashrc.bak
         sudo dnf install powerline -y
@@ -130,7 +159,7 @@ while true; do
         notify-send "Installed Powerline"
         ;;
 
-        8) echo "Installing Dracula theme"
+        9) echo "Installing Dracula theme"
         axel $DRACULA_THEME_URL -o gtk-master.zip
         unzip ./gtk-master.zip -d /usr/share/themes
         gsettings set org.gnome.desktop.interface gtk-theme 'gtk-master' 
@@ -139,12 +168,12 @@ while true; do
         notify-send "Installed Dracula theme"
         ;;
 
-        9) echo "Recovering maximize, minimize button"
+        10) echo "Recovering maximize, minimize button"
         gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
         notify-send "Recovered maximiaze, minimize button"
         ;;
 
-        10) echo "Installing ibus-bamboo"
+        11) echo "Installing ibus-bamboo"
         if [ "$(rpm -E %fedora)" -gt 33 ];
         then
             sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_33/home:lamlng.repo
@@ -157,18 +186,19 @@ while true; do
         notify-send "Installed ibus-bamboo"
         ;;
         
-        11) echo "Enabling dnf-automatic(Automatic updates)"
+        12) echo "Enabling dnf-automatic(Automatic updates)"
         sudo dnf install dnf-automatic -y
         sudo cp ./automatic.conf /etc/dnf/automatic.conf
         sudo systemctl enable --now dnf-automatic.timer
         notify-send "Enabled dnf-automatic"
         ;;
         
-        12)
+        13)
         sudo systemctl reboot
         ;;
 
-        13) exit 0
+        14) rm -rf CascadiaCode* gtk-master.zip
+        exit 0
         ;;
 
     esac
