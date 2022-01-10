@@ -38,8 +38,9 @@ chmod +x ./post-install.sh
 6. Disable "quiet" boot screen(make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
 7. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Powerline and Dracula theme
 8. Recover the maximize and minimize button(disabled by default)
-9. Optimize booting time for Intel's CPUs
-10. Install ibus-bamboo
+9. Install Pop Shell for tiling window on GNOME
+10. Optimize booting time for Intel's CPUs
+11. Install ibus-bamboo
 
 ## Found an issue?
 
@@ -56,6 +57,7 @@ Create an issue, then upload ~/.bashrc, /etc/default/grub and /etc/dnf/dnf.conf
 - The [StackOverflow](https://stackoverflow.com), [AskUbuntu](https://askubuntu.com) community for helping me writing themes, fonts install script
 - [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) for the Vietnamese input service on Linux(thanks to [OpenBuildService](https://software.opensuse.org//download.html?project=home%3Alamlng&package=ibus-bamboo) for the Fedora ibus-bamboo build)
 - [Zachary Yedidia (zyedidia)](https://github.com/zyedidia) and contributors for the [Micro Text Editor](https://github.com/zyedidia/micro)
+- [system76](https://system76.com) and their contributors for the [Pop Shell](https://github.com/pop-os/shell)
 
 ## License
 

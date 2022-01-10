@@ -44,10 +44,11 @@ OPTIONS=(
     8  "Install Powerline"
     9  "Install Dracula theme"
     10 "Recover maximize, minimize button"
-    11 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
-    12 "Enable dnf-automatic(Automatic updates)"
-    13 "Reboot"
-    14 "Quit"
+    11 "Install Pop Shell for tiling window on GNOME"
+    12 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
+    13 "Enable dnf-automatic(Automatic updates)"
+    14 "Reboot"
+    15 "Quit"
 )
 
 
@@ -173,7 +174,16 @@ while true; do
         notify-send "Recovered maximiaze, minimize button"
         ;;
 
-        11) echo "Installing ibus-bamboo"
+        11) echo "Installing Pop Shell"
+        sudo dnf install gnome-shell-extension-pop-shell xprop -y
+        echo "Enabling Pop Shell"
+        gsettings set org.gnome.shell enabled-extensions "['background-logo@fedorahosted.org', 'pop-shell@system76.com']"
+        gsettings set org.gnome.shell disabled-extensions "['apps-menu@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com']"
+        gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
+        notify-send "Installed and enabled Pop Shell"
+        ;;
+        
+        12) echo "Installing ibus-bamboo"
         if [ "$(rpm -E %fedora)" -gt 33 ];
         then
             sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_33/home:lamlng.repo
@@ -186,18 +196,18 @@ while true; do
         notify-send "Installed ibus-bamboo"
         ;;
         
-        12) echo "Enabling dnf-automatic(Automatic updates)"
+        13) echo "Enabling dnf-automatic(Automatic updates)"
         sudo dnf install dnf-automatic -y
         sudo cp ./automatic.conf /etc/dnf/automatic.conf
         sudo systemctl enable --now dnf-automatic.timer
         notify-send "Enabled dnf-automatic"
         ;;
         
-        13)
+        14)
         sudo systemctl reboot
         ;;
 
-        14) rm -rf CascadiaCode* gtk-master.zip
+        15) rm -rf CascadiaCode* gtk-master.zip
         exit 0
         ;;
 
