@@ -41,7 +41,7 @@ OPTIONS=(
     5  "Disable quiet boot screen"
     6  "Optimize booting time for Intel CPUs" # This is from Clear Linux, my friends found out this and suggested me
     7  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
-    8  "Install Powerline"
+    8  "Install Starship(a cross-shell prompt)"
     9  "Install Dracula theme"
     10 "Recover maximize, minimize button"
     11 "Install Pop Shell for tiling window on GNOME"
@@ -109,7 +109,7 @@ while true; do
             echo "Your CPU is Intel's CPU, let's optimize it"
             lscpu | grep -i "Model name"
             sudo cp /etc/default/grub /etc/default/grub.bak
-            echo -e "\nGRUB_CMDLINE_LINUX_DEFAULT=\"intel_idle.max_cstate=1 cryptomgr.notests initcall_debug intel_iommu=igfx_off no_timer_check noreplace-smp page_alloc.shuffle=1 rcupdate.rcu_expedited=1 tsc=reliable quiet splash\"" | sudo tee -a /etc/default/grub
+            echo -e "GRUB_CMDLINE_LINUX_DEFAULT=\"intel_idle.max_cstate=1 cryptomgr.notests initcall_debug intel_iommu=igfx_off no_timer_check noreplace-smp page_alloc.shuffle=1 rcupdate.rcu_expedited=1 tsc=reliable quiet splash\"" | sudo tee -a /etc/default/grub
             if [ -f "/sys/firmware/efi" ]; 
             then
                 sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
@@ -136,7 +136,7 @@ while true; do
         notify-send "Installed Google Noto Sans fonts, Microsoft Cascadia Code fonts and applied it to system fonts"
         ;;
 
-        8) echo "Installing Powerline"
+        8) echo "Installing Starship"
 
         # Check if the Cascadia Code fonts exists for this
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
@@ -155,9 +155,9 @@ while true; do
             done
         fi
         cp ~/.bashrc ~/.bashrc.bak
-        sudo dnf install powerline -y
-        echo -e "if [ -f $(which powerline-daemon) ]; then\npowerline-daemon -q\nPOWERLINE_BASH_CONTINUATION=1\nPOWERLINE_BASH_SELECT=1\n. /usr/share/powerline/bash/powerline.sh\nfi" >> ~/.bashrc
-        notify-send "Installed Powerline"
+        sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+        echo -e "eval \"$(starship init bash)\"" | tee -a ~/.bashrc
+        notify-send "Installed Starship"
         ;;
 
         9) echo "Installing Dracula theme"
