@@ -36,7 +36,7 @@ chmod +x ./post-install.sh
 4. Enable RPMFusion, Flathub
 5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
 6. Disable "quiet" boot screen(make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
-7. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Powerline and Dracula theme
+7. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Starship and Dracula theme
 8. Recover the maximize and minimize button(disabled by default)
 9. Install Pop Shell for tiling window on GNOME
 10. Optimize booting time for Intel's CPUs
