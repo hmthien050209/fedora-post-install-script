@@ -18,13 +18,13 @@ MENU_MSG="Please select one of following options:"
 CASCADIA_CODE_URL="https://github.com/microsoft/cascadia-code/releases/download/v2110.31/CascadiaCode-2110.31.zip"
 DRACULA_THEME_URL="https://github.com/dracula/gtk/archive/master.zip"
 
-# Install some tools required by the script
-sudo dnf install axel deltarpm -y
-
 # First, optimize the dnf package manager
 sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak
 sudo cp ./dnf.conf /etc/dnf/dnf.conf
 sudo dnf update -y
+
+# Install some tools required by the script
+sudo dnf install axel deltarpm -y
 
 # Check if we have dialog installed
 # If not, install it
