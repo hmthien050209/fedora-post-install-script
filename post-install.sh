@@ -8,7 +8,7 @@
 
 # Licensed under GPLv3 License
 
-HEIGHT=20
+HEIGHT=25
 WIDTH=90
 CHOICE_HEIGHT=4
 BACKTITLE="Fedora post-install script by davidhoang05022009(Hoàng Minh Thiên)"
@@ -40,15 +40,16 @@ OPTIONS=(
     4  "Install media codecs - Read more in README.md"
     5  "Disable quiet boot screen"
     6  "Optimize booting time for Intel CPUs" # This is from Clear Linux, my friends found out this and suggested me
-    7  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
-    8  "Install Starship(a cross-shell prompt)"
-    9  "Install Dracula theme"
-    10 "Recover maximize, minimize button"
-    11 "Install Pop Shell for tiling window on GNOME"
-    12 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
-    13 "Enable dnf-automatic(Automatic updates)"
-    14 "Reboot"
-    15 "Quit"
+    7  "Install auto-cpufreq(recommended for laptop users)"
+    8  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
+    9  "Install Starship(a cross-shell prompt)"
+    10 "Install Dracula theme"
+    11 "Recover maximize, minimize button"
+    12 "Install Pop Shell for tiling window on GNOME"
+    13 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
+    14 "Enable dnf-automatic(Automatic updates)"
+    15 "Reboot"
+    16 "Quit"
 )
 
 
@@ -122,7 +123,17 @@ while true; do
         fi
         ;;
 
-        7) echo "Installing Google Noto Sans fonts, Microsoft Cascadia Code fonts and apply it to system fonts"
+        7) echo "Installing auto-cpufreq"
+        echo -e "Please select the \"i\" option to install when the installer prompts"
+        # You can see the official install guide here 
+        # https://github.com/AdnanHodzic/auto-cpufreq/#auto-cpufreq-installer
+        git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+        cd auto-cpufreq && sudo ./auto-cpufreq-installer
+        sudo auto-cpufreq --install
+        notify-send "Installed auto-cpufreq"
+        ;;
+
+        8) echo "Installing Google Noto Sans fonts, Microsoft Cascadia Code fonts and apply it to system fonts"
         sudo dnf install google-noto-sans-fonts -y
         axel -n 20 $CASCADIA_CODE_URL
         unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
@@ -136,13 +147,13 @@ while true; do
         notify-send "Installed Google Noto Sans fonts, Microsoft Cascadia Code fonts and applied it to system fonts"
         ;;
 
-        8) echo "Installing Starship"
+        9) echo "Installing Starship"
 
         # Check if the Cascadia Code fonts exists for this
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
         then
             while true; do
-                read -rp "Seems like Microsoft Cascadia Code fonts(required by Powerline) are not installed. \nDo you want to install it? [y/n](Select 'n' if you have other Powerline-compatible fonts): " yn
+                read -rp "Seems like Microsoft Cascadia Code fonts(required by Starship) are not installed. \nDo you want to install it? [y/n](Select 'n' if you have other Powerline-compatible fonts): " yn
                 case $yn in
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
@@ -160,7 +171,7 @@ while true; do
         notify-send "Installed Starship"
         ;;
 
-        9) echo "Installing Dracula theme"
+        10) echo "Installing Dracula theme"
         axel $DRACULA_THEME_URL -o gtk-master.zip
         unzip ./gtk-master.zip -d /usr/share/themes
         gsettings set org.gnome.desktop.interface gtk-theme 'gtk-master' 
@@ -169,12 +180,12 @@ while true; do
         notify-send "Installed Dracula theme"
         ;;
 
-        10) echo "Recovering maximize, minimize button"
+        11) echo "Recovering maximize, minimize button"
         gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
         notify-send "Recovered maximiaze, minimize button"
         ;;
 
-        11) echo "Installing Pop Shell"
+        12) echo "Installing Pop Shell"
         sudo dnf install gnome-shell-extension-pop-shell xprop -y
         echo "Enabling Pop Shell"
         gsettings set org.gnome.shell enabled-extensions "['background-logo@fedorahosted.org', 'pop-shell@system76.com']"
@@ -183,7 +194,7 @@ while true; do
         notify-send "Installed and enabled Pop Shell"
         ;;
         
-        12) echo "Installing ibus-bamboo"
+        13) echo "Installing ibus-bamboo"
         if [ "$(rpm -E %fedora)" -gt 33 ];
         then
             sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_33/home:lamlng.repo
@@ -196,18 +207,18 @@ while true; do
         notify-send "Installed ibus-bamboo"
         ;;
         
-        13) echo "Enabling dnf-automatic(Automatic updates)"
+        14) echo "Enabling dnf-automatic(Automatic updates)"
         sudo dnf install dnf-automatic -y
         sudo cp ./automatic.conf /etc/dnf/automatic.conf
         sudo systemctl enable --now dnf-automatic.timer
         notify-send "Enabled dnf-automatic"
         ;;
         
-        14)
+        15)
         sudo systemctl reboot
         ;;
 
-        15) rm -rf CascadiaCode* gtk-master.zip
+        16) rm -rf CascadiaCode* gtk-master.zip
         exit 0
         ;;
 

@@ -28,7 +28,7 @@ chmod +x ./post-install.sh
 ./post-install.sh
 ```
 
-## What does this script do?
+## What can this script do?
 
 1. Speed-up and optimize `dnf`
 2. Check update for your system
@@ -36,11 +36,12 @@ chmod +x ./post-install.sh
 4. Enable RPMFusion, Flathub
 5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
 6. Disable "quiet" boot screen(make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
-7. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Starship and Dracula theme
-8. Recover the maximize and minimize button(disabled by default)
-9. Install Pop Shell for tiling window on GNOME
-10. Optimize booting time for Intel's CPUs
-11. Install ibus-bamboo
+7. Install auto-cpufreq for laptop users
+8. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Starship and Dracula theme
+9. Recover the maximize and minimize button(disabled by default)
+10. Install Pop Shell for tiling window on GNOME
+11. Optimize booting time for Intel's CPUs
+12. Install ibus-bamboo
 
 ## Found an issue?
 
@@ -57,7 +58,9 @@ Create an issue, then upload ~/.bashrc, /etc/default/grub and /etc/dnf/dnf.conf
 - The [StackOverflow](https://stackoverflow.com), [AskUbuntu](https://askubuntu.com) community for helping me writing themes, fonts install script
 - [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) for the Vietnamese input service on Linux(thanks to [OpenBuildService](https://software.opensuse.org//download.html?project=home%3Alamlng&package=ibus-bamboo) for the Fedora ibus-bamboo build)
 - [Zachary Yedidia (zyedidia)](https://github.com/zyedidia) and contributors for the [Micro Text Editor](https://github.com/zyedidia/micro)
-- [system76](https://system76.com) and their contributors for the [Pop Shell](https://github.com/pop-os/shell)
+- [system76](https://system76.com) and contributors for the [Pop Shell](https://github.com/pop-os/shell)
+- [Adnan Hodzic](https://github.com/AdnanHodzic) and contributors for the [auto-cpufreq](https://github.com/AdnanHodzic/auto-cpufreq/) utility
+- [Osiris](https://github.com/osiris2600) for the [fedora-setup](https://github.com/osiris2600/fedora-setup) that my script based on
 
 ## License
 
