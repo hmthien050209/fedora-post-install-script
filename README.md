@@ -10,6 +10,8 @@ Licensed under GPLv3 License
 
 # fedora-post-install-script
 
+#### Note: This script is only compatible on Fedora GNOME flavor(The default Fedora Workstation flavor)
+
 ## How to run?
 
 1. Make sure `git` and `dnf` are usable
