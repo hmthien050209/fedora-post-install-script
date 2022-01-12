@@ -55,7 +55,7 @@ OPTIONS=(
 
 while true; do
     CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE $(lscpu | grep -i "Model name:" | cut -d':' -f2- - | grep Intel)" \
+                --backtitle "$BACKTITLE $(lscpu | grep -i "Model name:" | cut -d':' -f2- - )" \
                 --title "$TITLE" \
                 --nocancel \
                 --menu "$MENU_MSG" \
