@@ -12,10 +12,15 @@ Licensed under GPLv3 License
 
 #### Note: This script is only compatible on Fedora GNOME flavor(The default Fedora Workstation flavor)
 
+## Screenshot
+
+![Screenshot](./fedora-post-install-script-screenshot.png)
+
 ## How to run?
 
 1. Make sure `git` is usable<br>
-If not, install it: 
+   If not, install it:
+
 ```sh
 sudo dnf install git -y
 ```
