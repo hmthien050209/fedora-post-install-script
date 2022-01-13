@@ -52,14 +52,14 @@ chmod +x ./post-install.sh
 
 ## Found an issue?
 
-Create an issue, then upload ~/.bashrc, /etc/default/grub and /etc/dnf/dnf.conf
+Create an issue with `Bug report` template
 
 ## Special thanks to:
 
 - Google for the [Noto Sans fonts](https://fonts.google.com/noto/specimen/Noto+Sans?query=Noto+Sans) (with OFL License)
 - Microsoft and their contributors for the [Cascadia Code fonts](https://github.com/microsoft/cascadia-code) (with OFL License) and [VSCode](https://github.com/Microsoft/vscode) (with MIT License)
 - The Dracula team and their contributors for the [Dracula Theme for GTK](https://github.com/dracula/gtk) (with GPLv3 License)
-- The [TechHut YouTube channel](https://www.youtube.com/c/TechHutHD) for the video ['5 Things You MUST DO After Installing Fedora 35'](https://www.youtube.com/watch?v=-NwWE9YFFIg)
+- The [TechHut YouTube channel](https://www.youtube.com/c/TechHutHD) for the video ["5 Things You MUST DO After Installing Fedora 35"](https://www.youtube.com/watch?v=-NwWE9YFFIg)
 - [Starship](https://starship.rs/) and their contributors for the beautiful shell prompt for bash(I personally don't like zsh or fish, bash is enough for me)
 - The official Fedora docs for the guide [how to setup automatic updates](https://docs.fedoraproject.org/en-US/quick-docs/autoupdates/) and [codecs install](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/)
 - The [StackOverflow](https://stackoverflow.com), [AskUbuntu](https://askubuntu.com) community for helping me writing themes, fonts install script

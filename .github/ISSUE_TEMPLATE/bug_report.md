@@ -27,3 +27,5 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+**Note**: Please upload the ~/.bashrc, /etc/dnf/dnf.conf, /etc/default/grub for me, i need these files to analyze the bug
