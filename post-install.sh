@@ -48,8 +48,9 @@ OPTIONS=(
     12 "Install Pop Shell for tiling window on GNOME"
     13 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
     14 "Enable dnf-automatic(Automatic updates)"
-    15 "Reboot"
-    16 "Quit"
+    15 "Secure your Linux system(by Chris Titus Tech)"
+    16 "Reboot"
+    17 "Quit"
 )
 
 
@@ -128,7 +129,7 @@ while true; do
         # You can see the official install guide here 
         # https://github.com/AdnanHodzic/auto-cpufreq/#auto-cpufreq-installer
         git clone https://github.com/AdnanHodzic/auto-cpufreq.git
-        cd auto-cpufreq && sudo ./auto-cpufreq-installer
+        sudo ./autocpu-freq/auto-cpufreq-installer
         sudo auto-cpufreq --install
         notify-send "Installed auto-cpufreq"
         ;;
@@ -153,7 +154,7 @@ while true; do
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
         then
             while true; do
-                read -rp "Seems like Microsoft Cascadia Code fonts(required by Starship) are not installed. \nDo you want to install it? [y/n](Select 'n' if you have other Powerline-compatible fonts): " yn
+                read -rp "Seems like Microsoft Cascadia Code fonts(required by Starship) are not installed. \nDo you want to install it? [y/n] \n(Select 'n' if you have other Starship-compatible/Nerd fonts installed): " yn
                 case $yn in
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
@@ -161,7 +162,7 @@ while true; do
                     sudo mv ./CascadiaCode-2110.31/ttf/static/\* /usr/share/fonts
                     fc-cache -f -v
                     ;;  
-                    [Nn]*) echo "Okie, continuing install Powerline" ;;
+                    [Nn]*) echo "Okie, continuing install Starship" ;;
                 esac
             done
         fi
@@ -213,12 +214,20 @@ while true; do
         sudo systemctl enable --now dnf-automatic.timer
         notify-send "Enabled dnf-automatic"
         ;;
+
+        15) echo "Enhancing your Linux system's security"
+        sudo dnf install ufw fail2ban -y
+        git clone https://github.com/ChrisTitusTech/secure-linux
+        chmod +x ./secure-linux/secure.sh
+        sudo ./secure-linux/secure.sh
+        notify-send "Enhanced your Linux system's security"
+        ;;
         
-        15)
+        16)
         sudo systemctl reboot
         ;;
 
-        16) rm -rf CascadiaCode* gtk-master.zip
+        17) rm -rf CascadiaCode* gtk-master.zip
         exit 0
         ;;
 

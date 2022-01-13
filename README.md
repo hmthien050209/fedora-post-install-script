@@ -34,7 +34,7 @@ chmod +x ./post-install.sh
 
 1. Speed-up and optimize `dnf`
 2. Check update for your system
-3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code`(VSCode), `dnf-automatic`
+3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code`(VSCode), `dnf-automatic`, `unzip`, `git`
 4. Enable RPMFusion, Flathub
 5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
 6. Disable "quiet" boot screen(make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
@@ -43,7 +43,8 @@ chmod +x ./post-install.sh
 9. Recover the maximize and minimize button(disabled by default)
 10. Install Pop Shell for tiling window on GNOME
 11. Optimize booting time for Intel's CPUs
-12. Install ibus-bamboo
+12. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
+13. Install ibus-bamboo
 
 ## Found an issue?
 
@@ -63,6 +64,7 @@ Create an issue, then upload ~/.bashrc, /etc/default/grub and /etc/dnf/dnf.conf
 - [system76](https://system76.com) and contributors for the [Pop Shell](https://github.com/pop-os/shell)
 - [Adnan Hodzic](https://github.com/AdnanHodzic) and contributors for the [auto-cpufreq](https://github.com/AdnanHodzic/auto-cpufreq/) utility
 - [Osiris](https://github.com/osiris2600) for the [fedora-setup](https://github.com/osiris2600/fedora-setup) that my script based on
+- [Chris Titus Tech](https://github.com/ChrisTitusTech) for the [secure-linux script](https://github.com/ChrisTitusTech/secure-linux), go check out [his YouTube channel](https://www.youtube.com/c/ChrisTitusTech) and [his website](https://www.christitus.com/), he has many good videos about Linux
 
 ## License
 
