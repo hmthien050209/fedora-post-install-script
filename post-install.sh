@@ -24,7 +24,7 @@ sudo cp ./dnf.conf /etc/dnf/dnf.conf
 sudo dnf update -y
 
 # Install some tools required by the script
-sudo dnf install axel deltarpm -y
+sudo dnf install axel deltarpm unzip -y
 
 # Check if we have dialog installed
 # If not, install it

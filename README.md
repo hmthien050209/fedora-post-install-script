@@ -14,7 +14,11 @@ Licensed under GPLv3 License
 
 ## How to run?
 
-1. Make sure `git` and `dnf` are usable
+1. Make sure `git` is usable<br>
+If not, install it: 
+```sh
+sudo dnf install git -y
+```
 
 2. Open Terminal, type:
 
