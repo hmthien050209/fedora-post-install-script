@@ -41,7 +41,7 @@ OPTIONS=(
     5  "Disable quiet boot screen"
     6  "Optimize booting time for Intel CPUs" # This is from Clear Linux, my friends found out this and suggested me
     7  "Install auto-cpufreq(recommended for laptop users)"
-    8  "Install Google Noto Sans fonts, Microsoft Cascadia Code Fonts"
+    8  "Install Google Noto Sans fonts, Microsoft Cascadia Code fonts"
     9  "Install Starship(a cross-shell prompt)"
     10 "Install Dracula theme"
     11 "Recover maximize, minimize button"
@@ -189,8 +189,7 @@ while true; do
         12) echo "Installing Pop Shell"
         sudo dnf install gnome-shell-extension-pop-shell xprop -y
         echo "Enabling Pop Shell"
-        gsettings set org.gnome.shell enabled-extensions "['background-logo@fedorahosted.org', 'pop-shell@system76.com']"
-        gsettings set org.gnome.shell disabled-extensions "['apps-menu@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com']"
+        gnome-extensions enable pop-shell@system76.com
         gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
         notify-send "Installed and enabled Pop Shell"
         ;;
