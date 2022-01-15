@@ -11,7 +11,7 @@
 HEIGHT=25
 WIDTH=90
 CHOICE_HEIGHT=4
-BACKTITLE="Fedora post-install script by davidhoang05022009(Hoàng Minh Thiên)"
+BACKTITLE="Fedora post-install script by davidhoang05022009 (Hoàng Minh Thiên)"
 MENU_MSG="Please select one of following options:"
 
 # URLs variables
@@ -35,20 +35,20 @@ fi
 
 OPTIONS=(
     1  "Install tools - Read more in README.md"
-    2  "Enable RPM Fusion"
+    2  "Enable RPMFusion"
     3  "Enable Flathub"
     4  "Install media codecs - Read more in README.md"
     5  "Disable quiet boot screen"
     6  "Optimize booting time for Intel CPUs" # This is from Clear Linux, my friends found out this and suggested me
-    7  "Install auto-cpufreq(recommended for laptop users)"
+    7  "Install auto-cpufreq (recommended for laptop users)"
     8  "Install Google Noto Sans fonts, Microsoft Cascadia Code fonts"
-    9  "Install Starship(a cross-shell prompt)"
+    9  "Install Starship (a cross-shell prompt)"
     10 "Install Dracula theme"
     11 "Recover maximize, minimize button"
     12 "Install Pop Shell for tiling window on GNOME"
-    13 "Install ibus-bamboo(\"Bộ gõ tiếng Việt\" for Vietnamese users)"
-    14 "Enable dnf-automatic(Automatic updates)"
-    15 "Secure your Linux system(by Chris Titus Tech)"
+    13 "Install ibus-bamboo (\"Bộ gõ tiếng Việt\" for Vietnamese users)"
+    14 "Enable dnf-automatic (Automatic updates)"
+    15 "Secure your Linux system (by Chris Titus Tech)"
     16 "Reboot"
     17 "Quit"
 )
@@ -65,7 +65,7 @@ while true; do
                 2>&1 >/dev/tty)
     clear
     case $CHOICE in 
-        1) echo "Installing Tools"
+        1) echo "Installing tools"
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 		sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
         sudo dnf update -y
@@ -73,7 +73,7 @@ while true; do
         notify-send "Installed tools"
         ;;
         
-        2) echo "Enabling RPM Fusion"
+        2) echo "Enabling RPMFusion"
         sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm -y
         sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm -y
         notify-send "Enabled RPM Fusion"
@@ -154,15 +154,20 @@ while true; do
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
         then
             while true; do
-                read -rp "Seems like Microsoft Cascadia Code fonts(required by Starship) are not installed. \nDo you want to install it? [y/n] \n(Select 'n' if you have other Starship-compatible/Nerd fonts installed): " yn
+                echo "Seems like Microsoft Cascadia Code fonts (required by Starship) are not installed."
+                read -rp "Do you want to install it? [y/n] (Select 'n' if you have other Starship-compatible/Nerd fonts installed): " yn
                 case $yn in
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
                     unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
                     sudo mv ./CascadiaCode-2110.31/ttf/static/\* /usr/share/fonts
                     fc-cache -f -v
+                    break
                     ;;  
-                    [Nn]*) echo "Okie, continuing install Starship" ;;
+
+                    [Nn]*) echo "Okie, continuing install Starship" 
+                    break
+                    ;;
                 esac
             done
         fi
@@ -177,7 +182,6 @@ while true; do
         unzip ./gtk-master.zip -d /usr/share/themes
         gsettings set org.gnome.desktop.interface gtk-theme 'gtk-master' 
         gsettings set org.gnome.desktop.wm.preferences theme 'gtk-master'
-        gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
         notify-send "Installed Dracula theme"
         ;;
 
