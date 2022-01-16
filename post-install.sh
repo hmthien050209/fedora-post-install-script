@@ -38,19 +38,18 @@ OPTIONS=(
     2  "Enable RPMFusion"
     3  "Enable Flathub"
     4  "Install media codecs - Read more in README.md"
-    5  "Disable quiet boot screen"
-    6  "Optimize booting time for Intel CPUs" # This is from Clear Linux, my friends found out this and suggested me
-    7  "Install auto-cpufreq (recommended for laptop users)"
-    8  "Install Google Noto Sans fonts, Microsoft Cascadia Code fonts"
-    9  "Install Starship (a cross-shell prompt)"
-    10 "Install Dracula theme"
-    11 "Recover maximize, minimize button"
-    12 "Install Pop Shell for tiling window on GNOME"
-    13 "Install ibus-bamboo (\"Bộ gõ tiếng Việt\" for Vietnamese users)"
-    14 "Enable dnf-automatic (Automatic updates)"
-    15 "Secure your Linux system (by Chris Titus Tech)"
-    16 "Reboot"
-    17 "Quit"
+    5  "Disable quiet boot screen and optimize booting time" 
+    6  "Install auto-cpufreq (recommended for laptop users)"
+    7  "Install Google Noto Sans fonts, Microsoft Cascadia Code fonts"
+    8  "Install Starship (a cross-shell prompt)"
+    9  "Install Dracula theme"
+    10 "Recover maximize, minimize button"
+    11 "Install Pop Shell for tiling window on GNOME"
+    12 "Install ibus-bamboo (\"Bộ gõ tiếng Việt\" for Vietnamese users)"
+    13 "Enable dnf-automatic (Automatic updates)"
+    14 "Secure your Linux system (by Chris Titus Tech)"
+    15 "Reboot"
+    16 "Quit"
 )
 
 
@@ -91,40 +90,43 @@ while true; do
         notify-send "Installed media codecs"
         ;;
 
-        5) echo "Disabling quiet boot screen"
-        sudo cp /etc/default/grub /etc/default/grub.bak
-        sudo cp ./grub /etc/default/grub
-        if [ -f "/sys/firmware/efi" ]; 
-        then
-            sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-        else
-            sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-        fi
-        sudo plymouth-set-default-theme details
-        sudo dracut -f
-        notify-send "Disabled quiet boot screen"
-        ;;
-
-        6) echo "Checking if your CPU is Intel's CPU or not"
+        5) echo "Disabling quiet boot screen and optimizing booting time for your PC/laptop"
+        echo "Checking if your CPU is Intel's CPU or not"
         if [ "$(< /proc/cpuinfo grep "GenuineIntel" | head -1 | cut -d "e" -f 4-)" == "Intel" ]; 
         then 
             echo "Your CPU is Intel's CPU, let's optimize it"
             lscpu | grep -i "Model name"
             sudo cp /etc/default/grub /etc/default/grub.bak
-            echo -e "GRUB_CMDLINE_LINUX_DEFAULT=\"intel_idle.max_cstate=1 cryptomgr.notests initcall_debug intel_iommu=igfx_off no_timer_check noreplace-smp page_alloc.shuffle=1 rcupdate.rcu_expedited=1 tsc=reliable quiet splash\"" | sudo tee -a /etc/default/grub
+            sudo cp ./grub /etc/default/grub
+            sudo plymouth-set-default-theme details
+            sudo dracut -f
+            echo -e "GRUB_CMDLINE_LINUX_DEFAULT=\"intel_idle.max_cstate=1 cryptomgr.notests initcall_debug intel_iommu=igfx_off no_timer_check noreplace-smp page_alloc.shuffle=1 rcupdate.rcu_expedited=1 tsc=reliable quiet splash noplymouth video=SVIDEO-1:d\"" | sudo tee -a /etc/default/grub # This is from Clear Linux, my friends found out this and suggested me
             if [ -f "/sys/firmware/efi" ]; 
             then
                 sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
             else
                 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
             fi
-            notify-send "Optimized booting time for your PC/Laptop"
+            sudo systemctl disable NetworkManager-wait-online.service # This one take the longest time while booting on my laptop
+            notify-send "Disabled quiet boot screen and optimized booting time for your PC/laptop"
         else
-            echo "Your CPU is not Intel's CPU"
+            echo "Your CPU is not Intel's CPU, doing some basic optimization"
+            sudo cp ./grub /etc/default/grub
+            echo -e "GRUB_CMDLINE_LINUX_DEFAULT=\"splash noplymouth video=SVIDEO-1:d\"" | sudo tee -a /etc/default/grub
+            if [ -f "/sys/firmware/efi" ]; 
+            then
+                sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+            else
+                sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+            fi
+            sudo plymouth-set-default-theme details
+            sudo dracut -f
+            sudo systemctl disable NetworkManager-wait-online.service # This one take the longest time while booting on my laptop
+            notify-send "Disabled quiet boot screen and optimized booting time for your PC/laptop"
         fi
         ;;
 
-        7) echo "Installing auto-cpufreq"
+        6) echo "Installing auto-cpufreq"
         echo -e "Please select the \"i\" option to install when the installer prompts"
         # You can see the official install guide here 
         # https://github.com/AdnanHodzic/auto-cpufreq/#auto-cpufreq-installer
@@ -134,7 +136,7 @@ while true; do
         notify-send "Installed auto-cpufreq"
         ;;
 
-        8) echo "Installing Google Noto Sans fonts, Microsoft Cascadia Code fonts and apply it to system fonts"
+        7) echo "Installing Google Noto Sans fonts, Microsoft Cascadia Code fonts and apply it to system fonts"
         sudo dnf install google-noto-sans-fonts -y
         axel -n 20 $CASCADIA_CODE_URL
         unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
@@ -148,7 +150,7 @@ while true; do
         notify-send "Installed Google Noto Sans fonts, Microsoft Cascadia Code fonts and applied it to system fonts"
         ;;
 
-        9) echo "Installing Starship"
+        8) echo "Installing Starship"
 
         # Check if the Cascadia Code fonts exists for this
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
@@ -177,7 +179,7 @@ while true; do
         notify-send "Installed Starship"
         ;;
 
-        10) echo "Installing Dracula theme"
+        9) echo "Installing Dracula theme"
         axel $DRACULA_THEME_URL -o gtk-master.zip
         unzip ./gtk-master.zip -d /usr/share/themes
         gsettings set org.gnome.desktop.interface gtk-theme 'gtk-master' 
@@ -185,12 +187,12 @@ while true; do
         notify-send "Installed Dracula theme"
         ;;
 
-        11) echo "Recovering maximize, minimize button"
+        10) echo "Recovering maximize, minimize button"
         gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
         notify-send "Recovered maximiaze, minimize button"
         ;;
 
-        12) echo "Installing Pop Shell"
+        11) echo "Installing Pop Shell"
         sudo dnf install gnome-shell-extension-pop-shell xprop -y
         echo "Enabling Pop Shell"
         gnome-extensions enable pop-shell@system76.com
@@ -198,7 +200,7 @@ while true; do
         notify-send "Installed and enabled Pop Shell"
         ;;
         
-        13) echo "Installing ibus-bamboo"
+        12) echo "Installing ibus-bamboo"
         if [ "$(rpm -E %fedora)" -gt 33 ];
         then
             sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_33/home:lamlng.repo
@@ -211,14 +213,14 @@ while true; do
         notify-send "Installed ibus-bamboo"
         ;;
         
-        14) echo "Enabling dnf-automatic(Automatic updates)"
+        13) echo "Enabling dnf-automatic(Automatic updates)"
         sudo dnf install dnf-automatic -y
         sudo cp ./automatic.conf /etc/dnf/automatic.conf
         sudo systemctl enable --now dnf-automatic.timer
         notify-send "Enabled dnf-automatic"
         ;;
 
-        15) echo "Enhancing your Linux system's security"
+        14) echo "Enhancing your Linux system's security"
         sudo dnf install ufw fail2ban -y
         git clone https://github.com/ChrisTitusTech/secure-linux
         chmod +x ./secure-linux/secure.sh
@@ -226,11 +228,11 @@ while true; do
         notify-send "Enhanced your Linux system's security"
         ;;
         
-        16)
+        15)
         sudo systemctl reboot
         ;;
 
-        17) rm -rf CascadiaCode* gtk-master.zip
+        16) rm -rf CascadiaCode* gtk-master.zip
         exit 0
         ;;
 
