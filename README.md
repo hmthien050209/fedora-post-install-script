@@ -49,7 +49,7 @@ chmod +x ./post-install.sh
 6. Disable "quiet" boot screen and optimize booting time (make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
 7. Install auto-cpufreq for laptop users
 8. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Starship and Dracula theme
-9. Recover the maximize and minimize button(disabled by default)
+9. Recover the maximize and minimize button (disabled by default)
 10. Install Pop Shell for tiling window on GNOME
 11. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
 12. Install ibus-bamboo
