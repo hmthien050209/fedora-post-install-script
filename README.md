@@ -43,10 +43,11 @@ chmod +x ./post-install.sh
 
 1. Speed-up and optimize `dnf`
 2. Check update for your system
-3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code`(VSCode), `dnf-automatic`, `unzip`
-4. Enable RPMFusion, Flathub
+3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code`(VSCode), `dnf-automatic`, `unzip`, `gh` ([GitHub CLI](https://cli.github.com/)), `github-desktop`
+4. Enable RPM Fusion, Flathub
 5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
-6. Disable "quiet" boot screen and optimize booting time (make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
+6. Disable "quiet" boot screen and optimize boot time (make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
+<br>(My laptop is using SSD, it takes only 5 seconds to boot up after optimize)
 7. Install auto-cpufreq for laptop users
 8. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Starship and Dracula theme
 9. Recover the maximize and minimize button (disabled by default)
@@ -73,6 +74,8 @@ Create an issue with `Bug report` template
 - [Adnan Hodzic](https://github.com/AdnanHodzic) and contributors for the [auto-cpufreq](https://github.com/AdnanHodzic/auto-cpufreq/) utility
 - [Osiris](https://github.com/osiris2600) for the [fedora-setup](https://github.com/osiris2600/fedora-setup) that my script based on
 - [Chris Titus Tech](https://github.com/ChrisTitusTech) for the [secure-linux script](https://github.com/ChrisTitusTech/secure-linux), go check out [his YouTube channel](https://www.youtube.com/c/ChrisTitusTech) and [his website](https://www.christitus.com/), he has many good videos about Linux
+- [Willi Mutschler](https://mutschler.eu/) for [BTRFS optimization for SSD](https://mutschler.eu/linux/install-guides/fedora-post-install/#btrfs-filesystem-optimizations) and some more things in [this guide](https://mutschler.eu/linux/install-guides/fedora-post-install/)
+- [ArchWiki](https://wiki.archlinux.org) for the [silent boot guide](https://wiki.archlinux.org/title/Silent_boot) and [Improving performance/Boot process guide](https://wiki.archlinux.org/title/Improving_performance/Boot_process) (yes this is Fedora but ArchWiki is also useful too XD)
 
 ## License
 
