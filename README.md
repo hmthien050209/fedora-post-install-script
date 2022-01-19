@@ -12,9 +12,11 @@ Licensed under GPLv3 License
 
 #### Note: This script is only compatible on Fedora GNOME flavor(The default Fedora Workstation flavor)
 
-## Screenshot
+## Screenshots
 
-![Screenshot](./fedora-post-install-script-screenshot.png)
+![Screenshot](./fedora-post-install-script-main-screenshot.png)
+![Screenshot](./fedora-post-install-script-plymouth-sub-menu-screenshot.png)
+
 
 ## How to run?
 
