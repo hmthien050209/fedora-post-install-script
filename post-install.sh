@@ -5,7 +5,7 @@
 # This program comes with ABSOLUTELY NO WARRANTY
 # This is free software, and you are welcome to redistribute it
 # under certain conditions
-
+#
 # Licensed under GPLv3 License
 
 HEIGHT=25
@@ -67,7 +67,7 @@ PLYMOUTH_OPTIONS=(
 
 while true; do
     CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE $(lscpu | grep -i "Model name:" | cut -d':' -f2- - )" \
+                --backtitle "$BACKTITLE - Main menu $(lscpu | grep -i "Model name:" | cut -d':' -f2- - )" \
                 --title "$TITLE" \
                 --nocancel \
                 --menu "$MENU_MSG" \
@@ -115,7 +115,7 @@ while true; do
         5) 
         while true; do
             PLYMOUTH_CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE $(lscpu | grep -i "Model name:" | cut -d':' -f2- - )" \
+                --backtitle "$BACKTITLE - Plymouth options menu $(lscpu | grep -i "Model name:" | cut -d':' -f2- - )" \
                 --title "$TITLE" \
                 --nocancel \
                 --menu "$MENU_MSG" \
