@@ -86,3 +86,5 @@ Copyright (C) 2021 davidhoang05022009(Hoàng Minh Thiên)</br>
 This program comes with ABSOLUTELY NO WARRANTY</br>
 This is free software, and you are welcome to redistribute it
 under certain conditions
+
+Please note that I am using a GPG signature to verify the commit now (for security reasons in the future)
