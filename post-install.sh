@@ -125,8 +125,22 @@ while true; do
             clear
             case $PLYMOUTH_CHOICE in
                 1) echo "Disabling quiet boot screen"
-                sudo cp /etc/default/grub /etc/default/grub.bak
-                sudo cp ./grub-quiet /etc/default/grub
+                while true; do
+                    read -rp "Do you want to install grub themes in the future? [y/n] (Select 'n' if you won't install grub themes in the future): " yn
+                    case $yn in
+                    [Yy]*) 
+                    sudo cp /etc/default/grub /etc/default/grub.bak
+                    sudo cp ./grub-quiet-theme-compatible /etc/default/grub
+                    break
+                    ;;  
+
+                    [Nn]*) 
+                    sudo cp /etc/default/grub /etc/default/grub.bak
+                    sudo cp ./grub-quiet /etc/default/grub 
+                    break
+                    ;;
+                    esac
+                done
                 if [ -f "/sys/firmware/efi" ]; 
                 then
                     sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
@@ -140,8 +154,22 @@ while true; do
                 ;;
 
                 2) echo "Disabling plymouth"
-                sudo cp /etc/default/grub /etc/default/grub.bak
-                sudo cp ./grub-plymouth-disable /etc/default/grub
+                while true; do
+                    read -rp "Do you want to install grub themes in the future? [y/n] (Select 'n' if you won't install grub themes in the future): " yn
+                    case $yn in
+                    [Yy]*) 
+                    sudo cp /etc/default/grub /etc/default/grub.bak
+                    sudo cp ./grub-plymouth-disable-theme-compatible /etc/default/grub
+                    break
+                    ;;  
+
+                    [Nn]*) 
+                    sudo cp /etc/default/grub /etc/default/grub.bak
+                    sudo cp ./grub-plymouth-disable /etc/default/grub 
+                    break
+                    ;;
+                    esac
+                done
                 if [ -f "/sys/firmware/efi" ]; 
                 then
                     sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
