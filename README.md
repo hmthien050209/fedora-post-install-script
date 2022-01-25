@@ -1,3 +1,6 @@
+<!-- ./README.md -->
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <!--
 fedora-post-install-script
 Copyright (C) 2021 davidhoang05022009(Hoàng Minh Thiên)

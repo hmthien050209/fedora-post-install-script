@@ -1,4 +1,6 @@
 #! /bin/bash
+# ./post-install.sh
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 # fedora-post-install-script
 # Copyright (C) 2021 davidhoang05022009(Hoàng Minh Thiên)
@@ -141,12 +143,7 @@ while true; do
                     ;;
                     esac
                 done
-                if [ -f "/sys/firmware/efi" ]; 
-                then
-                    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-                else
-                    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-                fi
+                ./scripts/update-grub
                 sudo plymouth-set-default-theme details 
                 sudo dracut -f --debug
                 notify-send "Disabled quiet boot screen"
@@ -170,12 +167,7 @@ while true; do
                     ;;
                     esac
                 done
-                if [ -f "/sys/firmware/efi" ]; 
-                then
-                    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-                else
-                    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-                fi
+                ./scripts/update-grub
                 sudo systemctl disable plymouth-quit-wait.service
                 echo "3 3 3 3" | sudo tee /proc/sys/kernel/printk
                 echo "kernel.printk = 3 3 3 3" | sudo tee -a /etc/sysctl.conf
