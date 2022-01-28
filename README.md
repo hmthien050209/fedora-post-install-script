@@ -59,6 +59,7 @@ chmod +x ./post-install.sh
 10. Install Pop Shell for tiling window on GNOME
 11. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
 12. Install ibus-bamboo
+13. Install my daily apps, includes AnyDesk, VLC, OBS Stusio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra
 
 ## Found an issue?
 

@@ -56,8 +56,9 @@ OPTIONS=(
     13 "Install ibus-bamboo (\"Bộ gõ tiếng Việt\" for Vietnamese users)"
     14 "Enable dnf-automatic (Automatic updates)"
     15 "Secure your Linux system (by Chris Titus Tech)"
-    16 "Reboot"
-    17 "Quit"
+    16 "Install my daily apps"
+    17 "Reboot"
+    18 "Quit"
 )
 
 PLYMOUTH_OPTIONS=(
@@ -316,12 +317,32 @@ while true; do
         notify-send "Enhanced your Linux system's security"
         read -rp "Press any key to continue" _
         ;;
+
+        16) echo "Installing my daily apps"
+        echo -e "[anydesk]\nname=AnyDesk Fedora - stable\nbaseurl=http://rpm.anydesk.com/fedora/\$basearch/\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY" | sudo tee /etc/yum.repos.d/AnyDesk-Fedora.repo
+        sudo dnf --releasever=32 install pangox-compat.x86_64
+        sudo dnf makecache
+        sudo dnf install redhat-lsb-core anydesk -y
+        sudo dnf install google-chrome vlc obs-studio @virtualization shotcut ulauncher seahorse -y
+        flatpak install flathub com.discordapp.Discord -y
+        flatpak install flathub org.signal.Signal -y
+        flatpak install flathub org.telegram.desktop -y
+        flatpak install flathub org.remmina.Remmina -y
+        flatpak install flathub org.geogebra.GeoGebra -y
+        echo "Configuring virt-manager"
+        echo -e "\nunix_sock_group = \"libvirt\"\nunix_sock_rw_perms = \"0770\""
+        sudo systemctl start libvirtd
+        sudo systemctl enable libvirtd
+        sudo usermod -a -G libvirt "$(whoami)"
+        echo "Done configuring and install my daily apps, make sure to re-login before using virt-manager"
+        read -rp "Press any key to continue" _
+        ;;
         
-        16)
+        17)
         sudo systemctl reboot
         ;;
 
-        17) rm -rf CascadiaCode*
+        18) rm -rf CascadiaCode*
         exit 0
         ;;
 
