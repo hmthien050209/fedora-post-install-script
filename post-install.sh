@@ -323,7 +323,7 @@ while true; do
         sudo dnf --releasever=32 install pangox-compat.x86_64
         sudo dnf makecache
         sudo dnf install redhat-lsb-core anydesk -y
-        sudo dnf install google-chrome vlc obs-studio @virtualization shotcut ulauncher seahorse -y
+        sudo dnf install google-chrome vlc obs-studio @virtualization shotcut ulauncher seahorse clang cmake ninja-build pkg-config gtk3-devel xz-devel -y
         flatpak install flathub com.discordapp.Discord -y
         flatpak install flathub org.signal.Signal -y
         flatpak install flathub org.telegram.desktop -y

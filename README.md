@@ -59,7 +59,7 @@ chmod +x ./post-install.sh
 10. Install Pop Shell for tiling window on GNOME
 11. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
 12. Install ibus-bamboo
-13. Install my daily apps, includes AnyDesk, VLC, OBS Stusio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra
+13. Install my daily apps, includes AnyDesk, VLC, OBS Stusio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
 
 ## Found an issue?
 
@@ -82,6 +82,7 @@ Create an issue with `Bug report` template
 - [Chris Titus Tech](https://github.com/ChrisTitusTech) for the [secure-linux script](https://github.com/ChrisTitusTech/secure-linux), go check out [his YouTube channel](https://www.youtube.com/c/ChrisTitusTech) and [his website](https://www.christitus.com/), he has many good videos about Linux
 - [Willi Mutschler](https://mutschler.eu/) for [BTRFS optimization for SSD](https://mutschler.eu/linux/install-guides/fedora-post-install/#btrfs-filesystem-optimizations) and some more things in [this guide](https://mutschler.eu/linux/install-guides/fedora-post-install/)
 - [ArchWiki](https://wiki.archlinux.org) for the [silent boot guide](https://wiki.archlinux.org/title/Silent_boot) and [Improving performance/Boot process guide](https://wiki.archlinux.org/title/Improving_performance/Boot_process) (yes this is Fedora but ArchWiki is also useful too XD)
+- All developers of third-party dependencies that I used in this script
 
 ## License
 
