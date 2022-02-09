@@ -59,7 +59,7 @@ chmod +x ./post-install.sh
 10. Install Pop Shell for tiling window on GNOME
 11. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
 12. Install ibus-bamboo
-13. Install my daily apps, includes AnyDesk, VLC, OBS Stusio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
+13. Install my daily apps, includes AnyDesk, VLC, OBS Studio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
 
 ## Found an issue?
 
@@ -68,7 +68,7 @@ Create an issue with `Bug report` template
 ## Special thanks to:
 
 - Google for the [Noto Sans fonts](https://fonts.google.com/noto/specimen/Noto+Sans?query=Noto+Sans) (with OFL License)
-- Microsoft and their contributors for the [Cascadia Code fonts](https://github.com/microsoft/cascadia-code) (with OFL License) and [VSCode](https://github.com/Microsoft/vscode) (with MIT License)
+- Microsoft and their contributors for the [Cascadia Code fonts](https://github.com/microsoft/cascadia-code) (with OFL License) and [VSCode](https://github.com/Microsoft/vscode)
 - The Dracula team and their contributors for the [Dracula Theme for GTK](https://github.com/dracula/gtk) (with GPLv3 License)
 - The [TechHut YouTube channel](https://www.youtube.com/c/TechHutHD) for the video ["5 Things You MUST DO After Installing Fedora 35"](https://www.youtube.com/watch?v=-NwWE9YFFIg)
 - [Starship](https://starship.rs/) and their contributors for the beautiful shell prompt for bash(I personally don't like zsh or fish, bash is enough for me)
