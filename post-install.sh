@@ -268,6 +268,10 @@ while true; do
         sudo git clone https://github.com/dracula/gtk.git /usr/share/themes/Dracula
         gsettings set org.gnome.desktop.interface gtk-theme 'Dracula' 
         gsettings set org.gnome.desktop.wm.preferences theme 'Dracula'
+        axel -n 20 https://github.com/dracula/wallpaper/blob/master/fedora.png
+        gsettings set org.gnome.desktop.screensaver picture-uri "file:///$(pwd)/fedora.png"
+        gsettings set org.gnome.desktop.screensaver primary-color "#000000000000"
+        gsettings set org.gnome.desktop.screensaver secondary-color "#000000000000"
         notify-send "Installed Dracula theme"
         read -rp "Press any key to continue" _
         ;;
@@ -281,9 +285,12 @@ while true; do
         12) echo "Installing Pop Shell"
         sudo dnf install gnome-shell-extension-pop-shell xprop -y
         echo "Enabling Pop Shell"
-        gnome-extensions enable pop-shell@system76.com
+        gnome-extensions enable pop-shell@system76.com # may need to go to extensions to enable
         gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
-        notify-send "Installed and enabled Pop Shell"
+        gsettings set org.gnome.shell.extensions.pop-shell hint-color-rgba "rgb(66,103,212)"
+        gsettings set org.gnome.shell.extensions.pop-shell gap-outer 0
+        gsettings set org.gnome.shell.extensions.pop-shell gap-inner 0
+        notify-send "Installed and enabled Pop Shell, if Pop Shell is not enabled, go to Extensions to enable it"
         read -rp "Press any key to continue" _
         ;;
         
