@@ -23,12 +23,23 @@ CASCADIA_CODE_URL="https://github.com/microsoft/cascadia-code/releases/download/
 sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak
 sudo cp ./dnf.conf /etc/dnf/dnf.conf
 sudo dnf upgrade --refresh -y
+
+# Check for updates
 sudo dnf check
 sudo dnf autoremove -y
 sudo fwupdmgr get-devices
 sudo fwupdmgr refresh --force
 sudo fwupdmgr get-updates
 sudo fwupdmgr update -y
+
+function update_grub() {
+    if [ -f "/sys/firmware/efi" ]; 
+    then
+        sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+    else
+        sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+    fi
+}
 
 # Install some tools required by the script
 sudo dnf install axel deltarpm unzip -y
@@ -86,6 +97,39 @@ while true; do
         sudo dnf update -y
         axel -n 20 https://github.com/shiftkey/desktop/releases/download/release-2.9.6-linux1/GitHubDesktop-linux-2.9.6-linux1.rpm
         sudo dnf install htop neofetch xclip gnome-tweaks micro code gh ./GitHubDesktop-linux-2.9.6-linux1.rpm -y
+
+        # Check if the Cascadia Code fonts exists for Kitty
+        if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
+        then
+            while true; do
+                echo "Seems like Microsoft Cascadia Code fonts (required by my Kitty config file) are not installed."
+                read -rp "Do you want to install it? [y/n] (Select 'n' if you want to edit the config files for other fonts): " yn
+                case $yn in
+                    [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
+                    axel -n 20 $CASCADIA_CODE_URL
+                    unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
+                    sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts
+                    fc-cache -f -v
+                    break
+                    ;;  
+
+                    [Nn]*) echo "Okie, continuing install Kitty" 
+                    break
+                    ;;
+                esac
+            done
+        fi
+
+        sudo dnf install kitty -y
+        
+        # These files i grabbed from Dracula (again xD)
+        cp -r ./diff.conf ~/.config/kitty/
+        cp -r ./dracula.conf ~/.config/kitty/
+        
+        # This is my personal Kitty config file
+        cp -r ./kitty.conf ~/.config/kitty/
+        
+        echo "Go to ~/.config/kitty/ to edit Kitty's config files"
         notify-send "Installed tools"
         read -rp "Press any key to continue" _
         ;;
@@ -144,7 +188,7 @@ while true; do
                     ;;
                     esac
                 done
-                ./scripts/update-grub
+                update_grub
                 sudo plymouth-set-default-theme details 
                 sudo dracut -f --debug
                 notify-send "Disabled quiet boot screen"
@@ -168,7 +212,7 @@ while true; do
                     ;;
                     esac
                 done
-                ./scripts/update-grub
+                update_grub
                 sudo systemctl disable plymouth-quit-wait.service
                 echo "3 3 3 3" | sudo tee /proc/sys/kernel/printk
                 echo "kernel.printk = 3 3 3 3" | sudo tee -a /etc/sysctl.conf
@@ -190,12 +234,7 @@ while true; do
             echo "Your CPU is Intel's CPU, let's optimize it"
             lscpu | grep -i "Model name"
             echo -e "\nGRUB_CMDLINE_LINUX_DEFAULT=\"intel_idle.max_cstate=1 cryptomgr.notests initcall_debug intel_iommu=igfx_off no_timer_check noreplace-smp page_alloc.shuffle=1 rcupdate.rcu_expedited=1 tsc=reliable quiet splash video=SVIDEO-1:d\"" | sudo tee -a /etc/default/grub # This is from Clear Linux, my friends found out this and suggested me
-            if [ -f "/sys/firmware/efi" ]; 
-            then
-                sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-            else
-                sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-            fi
+            update_grub
             sudo systemctl disable NetworkManager-wait-online.service # This one take the longest time while booting on my laptop
         else
             echo "Your CPU is not Intel's CPU, doing some basic optimization"

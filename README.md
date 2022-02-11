@@ -48,7 +48,7 @@ chmod +x ./post-install.sh
 
 1. Speed-up and optimize `dnf`
 2. Check update for your system
-3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code`(VSCode), `dnf-automatic`, `unzip`, `gh` ([GitHub CLI](https://cli.github.com/)), `github-desktop`
+3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code`(VSCode), `dnf-automatic`, `unzip`, `gh` ([GitHub CLI](https://cli.github.com/)), `github-desktop`, `kitty`
 4. Enable RPM Fusion, Flathub
 5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
 6. Disable "quiet" boot screen and optimize boot time (make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
