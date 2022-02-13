@@ -20,7 +20,6 @@ Licensed under GPLv3 License
 ![Screenshot](./fedora-post-install-script-main-screenshot.png)
 ![Screenshot](./fedora-post-install-script-plymouth-sub-menu-screenshot.png)
 
-
 ## How to run?
 
 1. Make sure `git` is usable<br>
@@ -52,14 +51,14 @@ chmod +x ./post-install.sh
 4. Enable RPM Fusion, Flathub
 5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
 6. Disable "quiet" boot screen and optimize boot time (make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
-<br>(My laptop is using SSD, it takes only 5 seconds to boot up after optimize)
+   <br>(My laptop is using SSD, it takes only 5 seconds to boot up after optimize)
 7. Install auto-cpufreq for laptop users
 8. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Starship and Dracula theme
 9. Recover the maximize and minimize button (disabled by default)
 10. Install Pop Shell for tiling window on GNOME
 11. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
 12. Install ibus-bamboo
-13. Install my daily apps, includes AnyDesk, VLC, OBS Studio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
+13. Install my daily apps, includes AnyDesk, VLC, OBS Studio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra, Bitwarden, `variety` for automatic background changing and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
 
 ## Found an issue?
 

@@ -357,6 +357,8 @@ while true; do
 
         15) echo "Enhancing your Linux system's security"
         sudo dnf install ufw fail2ban -y
+        sudo systemctl enable --now ufw.service
+        sudo systemctl disable --now firewalld.service
         git clone https://github.com/ChrisTitusTech/secure-linux
         chmod +x ./secure-linux/secure.sh
         sudo ./secure-linux/secure.sh
@@ -369,12 +371,18 @@ while true; do
         sudo dnf --releasever=32 install pangox-compat.x86_64
         sudo dnf makecache
         sudo dnf install redhat-lsb-core anydesk -y
-        sudo dnf install google-chrome vlc obs-studio @virtualization shotcut ulauncher seahorse clang cmake ninja-build pkg-config gtk3-devel xz-devel -y
+        sudo dnf install google-chrome vlc obs-studio @virtualization shotcut ulauncher seahorse clang cmake ninja-build pkg-config gtk3-devel xz-devel variety -y
         flatpak install flathub com.discordapp.Discord -y
+        curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
+        chmod +x betterdiscordctl
+        mv betterdiscordctl /usr/local/bin
+        betterdiscordctl --d-install flatpak install
+        curl https://raw.githubusercontent.com/dracula/betterdiscord/master/Dracula.theme.css -o ~/.var/app/com.discordapp.Discord/config/BetterDiscord/themes/Dracula.theme.css
         flatpak install flathub org.signal.Signal -y
         flatpak install flathub org.telegram.desktop -y
         flatpak install flathub org.remmina.Remmina -y
         flatpak install flathub org.geogebra.GeoGebra -y
+        flatpak install com.bitwarden.desktop -y
         echo "Configuring virt-manager"
         echo -e "\nunix_sock_group = \"libvirt\"\nunix_sock_rw_perms = \"0770\""
         sudo systemctl start libvirtd
