@@ -250,8 +250,8 @@ while true; do
         # You can see the official install guide here 
         # https://github.com/AdnanHodzic/auto-cpufreq/#auto-cpufreq-installer
         git clone https://github.com/AdnanHodzic/auto-cpufreq.git
-        chmod +x ./autocpu-freq/auto-cpufreq-installer
-        sudo ./autocpu-freq/auto-cpufreq-installer
+        chmod +x ./auto-cpufreq/auto-cpufreq-installer
+        sudo ./auto-cpufreq/auto-cpufreq-installer
         sudo auto-cpufreq --install
         notify-send "Installed auto-cpufreq"
         read -rp "Press any key to continue" _
@@ -294,7 +294,7 @@ while true; do
             done
         fi
         cp ~/.bashrc ~/.bashrc.bak
-        sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+        sudo dnf install starship -y
         echo -e "eval \"$(starship init bash)\"" | tee -a ~/.bashrc
         # shellcheck disable=SC1090
         # OK I am using ShellCheck, it's fine to specify the ~/ here
