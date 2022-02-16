@@ -371,7 +371,7 @@ while true; do
         sudo dnf --releasever=32 install pangox-compat.x86_64
         sudo dnf makecache
         sudo dnf install redhat-lsb-core anydesk -y
-        sudo dnf install google-chrome vlc obs-studio @virtualization shotcut ulauncher seahorse clang cmake ninja-build pkg-config gtk3-devel xz-devel variety -y
+        sudo dnf install google-chrome vlc obs-studio @virtualization shotcut seahorse clang cmake ninja-build pkg-config gtk3-devel xz-devel variety -y
         flatpak install flathub com.discordapp.Discord -y
         curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
         chmod +x betterdiscordctl

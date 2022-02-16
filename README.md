@@ -58,7 +58,7 @@ chmod +x ./post-install.sh
 10. Install Pop Shell for tiling window on GNOME
 11. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
 12. Install ibus-bamboo
-13. Install my daily apps, includes AnyDesk, VLC, OBS Studio, @Virtualization, Shotcut, Ulauncher, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra, Bitwarden, `variety` for automatic background changing and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
+13. Install my daily apps, includes AnyDesk, VLC, OBS Studio, @Virtualization, Shotcut, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra, Bitwarden, `variety` for automatic background changing and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
 
 ## Found an issue?
 
