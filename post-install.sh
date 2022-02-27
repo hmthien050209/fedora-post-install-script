@@ -60,7 +60,7 @@ OPTIONS=(
     6  "Optimize booting time" 
     7  "Install auto-cpufreq (recommended for laptop users)"
     8  "Install Google Noto Sans fonts, Microsoft Cascadia Code fonts"
-    9  "Install Starship (a cross-shell prompt)"
+    9  "Install Fish with Tide (a powerlevel10k-like Fish prompt)"
     10 "Install Dracula theme"
     11 "Recover maximize, minimize button"
     12 "Install Pop Shell for tiling window on GNOME"
@@ -271,13 +271,15 @@ while true; do
         read -rp "Press any key to continue" _
         ;;
 
-        9) echo "Installing Starship"
-        # Check if the Cascadia Code fonts exists for this
+        9) echo "Installing Fish"
+        sudo dnf install fish -y
+        echo "Installing my dotfiles (includes Dracula theme, Tide and Fisher)"
+        # Check if the Cascadia Code fonts exists for Tide
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
         then
             while true; do
-                echo "Seems like Microsoft Cascadia Code fonts (required by Starship) are not installed."
-                read -rp "Do you want to install it? [y/n] (Select 'n' if you have other Starship-compatible/Nerd fonts installed): " yn
+                echo "Seems like Microsoft Cascadia Code fonts (required by Tide) are not installed."
+                read -rp "Do you want to install it? [y/n] (Select 'n' if you have other nerd fonts installed): " yn
                 case $yn in
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
@@ -287,19 +289,18 @@ while true; do
                     break
                     ;;  
 
-                    [Nn]*) echo "Okie, continuing install Starship" 
+                    [Nn]*) echo "Okie, continuing install Tide" 
                     break
                     ;;
                 esac
             done
         fi
-        cp ~/.bashrc ~/.bashrc.bak
-        sudo dnf install starship -y
-        echo -e "eval \"$(starship init bash)\"" | tee -a ~/.bashrc
-        # shellcheck disable=SC1090
         # OK I am using ShellCheck, it's fine to specify the ~/ here
-        source ~/.bashrc
-        notify-send "Installed Starship"
+        # shellcheck disable=SC1090
+        mkdir ~/.config/fish.bak/
+        cp ~/.config/fish/* ~/.config/fish.bak/
+        cp ./fish/* ~/.config/fish/
+        notify-send "Installed Fish, Fisher, Dracula theme for Fish and Tide"
         read -rp "Press any key to continue" _
         ;;
 
