@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # fedora-post-install-script
-# Copyright (C) 2021 davidhoang05022009(Hoàng Minh Thiên)
+# Copyright (C) 2022 davidhoang05022009(Hoàng Minh Thiên)
 # This program comes with ABSOLUTELY NO WARRANTY
 # This is free software, and you are welcome to redistribute it
 # under certain conditions
@@ -17,7 +17,7 @@ BACKTITLE="Fedora post-install script by davidhoang05022009 (Hoàng Minh Thiên)
 MENU_MSG="Please select one of following options:"
 
 # URLs variables
-CASCADIA_CODE_URL="https://github.com/microsoft/cascadia-code/releases/download/v2110.31/CascadiaCode-2110.31.zip"
+CASCADIA_CODE_URL="https://github.com/microsoft/cascadia-code/releases/download/v2111.01/CascadiaCode-2111.01.zip"
 
 # First, optimize the dnf package manager
 sudo cp /etc/dnf/dnf.conf /etc/dnf/dnf.conf.bak
@@ -95,8 +95,8 @@ while true; do
 		sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
         sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
         sudo dnf update -y
-        axel -n 20 https://github.com/shiftkey/desktop/releases/download/release-2.9.6-linux1/GitHubDesktop-linux-2.9.6-linux1.rpm
-        sudo dnf install htop neofetch xclip gnome-tweaks micro code gh ./GitHubDesktop-linux-2.9.6-linux1.rpm -y
+        axel -n 20 https://github.com/shiftkey/desktop/releases/download/release-2.9.9-linux2/GitHubDesktop-linux-2.9.9-linux2.rpm
+        sudo dnf install htop neofetch xclip gnome-tweaks micro code gh ./GitHubDesktop-linux-2.9.9-linux2.rpm -y
 
         # Check if the Cascadia Code fonts exists for Kitty
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
