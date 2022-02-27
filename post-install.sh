@@ -275,8 +275,8 @@ while true; do
         sudo dnf install fish -y
         echo "Installing my dotfiles (includes Dracula theme)"
         mkdir ~/.config/fish.bak/
-        cp ~/.config/fish/* ~/.config/fish.bak/
-        cp ./fish/* ~/.config/fish/
+        cp -r ~/.config/fish/* ~/.config/fish.bak/
+        cp -r ./fish/* ~/.config/fish/
         
         # Check if the Cascadia Code fonts exists for Tide
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
