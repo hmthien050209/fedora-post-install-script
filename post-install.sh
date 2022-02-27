@@ -273,7 +273,11 @@ while true; do
 
         9) echo "Installing Fish"
         sudo dnf install fish -y
-        echo "Installing my dotfiles (includes Dracula theme, Tide and Fisher)"
+        echo "Installing my dotfiles (includes Dracula theme)"
+        mkdir ~/.config/fish.bak/
+        cp ~/.config/fish/* ~/.config/fish.bak/
+        cp ./fish/* ~/.config/fish/
+        
         # Check if the Cascadia Code fonts exists for Tide
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
         then
@@ -295,11 +299,10 @@ while true; do
                 esac
             done
         fi
-        # OK I am using ShellCheck, it's fine to specify the ~/ here
-        # shellcheck disable=SC1090
-        mkdir ~/.config/fish.bak/
-        cp ~/.config/fish/* ~/.config/fish.bak/
-        cp ./fish/* ~/.config/fish/
+        
+        echo "Installing Fisher and Tide"
+        "$(which fish)" ./fisher_tide_install.sh
+
         notify-send "Installed Fish, Fisher, Dracula theme for Fish and Tide"
         read -rp "Press any key to continue" _
         ;;
