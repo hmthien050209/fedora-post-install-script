@@ -108,7 +108,7 @@ while true; do
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
                     unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
-                    sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts
+                    sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts/
                     fc-cache -f -v
                     break
                     ;;  
@@ -123,11 +123,11 @@ while true; do
         sudo dnf install kitty -y
         
         # These files i grabbed from Dracula (again xD)
-        cp -r ./diff.conf ~/.config/kitty/
-        cp -r ./dracula.conf ~/.config/kitty/
+        cp ./diff.conf ~/.config/kitty/
+        cp ./dracula.conf ~/.config/kitty/
         
         # This is my personal Kitty config file
-        cp -r ./kitty.conf ~/.config/kitty/
+        cp ./kitty.conf ~/.config/kitty/
         
         echo "Go to ~/.config/kitty/ to edit Kitty's config files"
         notify-send "Installed tools"
@@ -261,7 +261,7 @@ while true; do
         sudo dnf install google-noto-sans-fonts -y
         axel -n 20 $CASCADIA_CODE_URL
         unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
-        sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts
+        sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts/
         fc-cache -f -v
         gsettings set org.gnome.desktop.interface font-name 'Noto Sans Medium 11'
         gsettings set org.gnome.desktop.interface document-font-name 'Noto Sans Regular 11'
@@ -288,7 +288,7 @@ while true; do
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
                     unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
-                    sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts
+                    sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts/
                     fc-cache -f -v
                     break
                     ;;  
@@ -311,10 +311,6 @@ while true; do
         sudo git clone https://github.com/dracula/gtk.git /usr/share/themes/Dracula
         gsettings set org.gnome.desktop.interface gtk-theme 'Dracula' 
         gsettings set org.gnome.desktop.wm.preferences theme 'Dracula'
-        axel -n 20 https://github.com/dracula/wallpaper/blob/master/fedora.png
-        gsettings set org.gnome.desktop.screensaver picture-uri "file:///$(pwd)/fedora.png"
-        gsettings set org.gnome.desktop.screensaver primary-color "#000000000000"
-        gsettings set org.gnome.desktop.screensaver secondary-color "#000000000000"
         notify-send "Installed Dracula theme"
         read -rp "Press any key to continue" _
         ;;
