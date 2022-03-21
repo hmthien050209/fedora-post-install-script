@@ -107,9 +107,9 @@ while true; do
                 case $yn in
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
-                    unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
-                    sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts/
-                    fc-cache -f -v
+                    unzip ./CascadiaCode-2110.01.zip -d ./CascadiaCode-2110.01
+                    sudo mv ./CascadiaCode-2110.01/ttf/static/* /usr/share/fonts/
+                    fc-cache -fv
                     break
                     ;;  
 
@@ -121,6 +121,8 @@ while true; do
         fi
 
         sudo dnf install kitty -y
+
+        mkdir "$HOME"/.config/kitty/
         
         # These files i grabbed from Dracula (again xD)
         cp ./diff.conf ~/.config/kitty/
@@ -146,7 +148,7 @@ while true; do
         ;;
         
         3) echo "Enabling Flathub"
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         notify-send "Enabled Flathub"
         read -rp "Press any key to continue" _
         ;;
@@ -260,8 +262,8 @@ while true; do
         8) echo "Installing Google Noto Sans fonts, Microsoft Cascadia Code fonts and apply it to system fonts"
         sudo dnf install google-noto-sans-fonts -y
         axel -n 20 $CASCADIA_CODE_URL
-        unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
-        sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts/
+        unzip ./CascadiaCode-2110.01.zip -d ./CascadiaCode-2110.01
+        sudo mv ./CascadiaCode-2110.01/ttf/static/* /usr/share/fonts/
         fc-cache -f -v
         gsettings set org.gnome.desktop.interface font-name 'Noto Sans Medium 11'
         gsettings set org.gnome.desktop.interface document-font-name 'Noto Sans Regular 11'
@@ -273,10 +275,6 @@ while true; do
 
         9) echo "Installing Fish"
         sudo dnf install fish -y
-        echo "Installing my dotfiles (includes Dracula theme)"
-        mkdir ~/.config/fish.bak/
-        cp -r ~/.config/fish/* ~/.config/fish.bak/
-        cp -r ./fish/* ~/.config/fish/
         
         # Check if the Cascadia Code fonts exists for Tide
         if [ "$(fc-list | grep -c 'Cascadia Code')" -lt 1 ];
@@ -287,8 +285,8 @@ while true; do
                 case $yn in
                     [Yy]*) echo "Installing Microsoft Cascadia Code fonts" 
                     axel -n 20 $CASCADIA_CODE_URL
-                    unzip ./CascadiaCode-2110.31.zip -d ./CascadiaCode-2110.31
-                    sudo mv ./CascadiaCode-2110.31/ttf/static/* /usr/share/fonts/
+                    unzip ./CascadiaCode-2110.01.zip -d ./CascadiaCode-2110.01
+                    sudo mv ./CascadiaCode-2110.01/ttf/static/* /usr/share/fonts/
                     fc-cache -f -v
                     break
                     ;;  
