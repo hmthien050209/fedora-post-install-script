@@ -373,7 +373,7 @@ while true; do
         flatpak install flathub com.discordapp.Discord -y
         curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
         chmod +x betterdiscordctl
-        mv betterdiscordctl /usr/local/bin
+        sudo mv betterdiscordctl /usr/local/bin
         betterdiscordctl --d-install flatpak install
         curl https://raw.githubusercontent.com/dracula/betterdiscord/master/Dracula.theme.css -o ~/.var/app/com.discordapp.Discord/config/BetterDiscord/themes/Dracula.theme.css
         flatpak install flathub org.signal.Signal -y
