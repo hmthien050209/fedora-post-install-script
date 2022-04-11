@@ -51,9 +51,9 @@ while true; do
             ;;
             esac
         done
-        update_grub
+        scripts/update_grub.sh
         sudo plymouth-set-default-theme details 
-        sudo dracut -f --debug
+        sudo dracut -fv
         notify-send "Disabled quiet boot screen"
         read -rp "Press any key to continue" _
         ;;
@@ -75,11 +75,11 @@ while true; do
             ;;
             esac
         done
-        update_grub
+        scripts/update_grub.sh
         sudo systemctl disable plymouth-quit-wait.service
         echo "3 3 3 3" | sudo tee /proc/sys/kernel/printk
         echo "kernel.printk = 3 3 3 3" | sudo tee -a /etc/sysctl.conf
-        sudo dracut -f --debug
+        sudo dracut -fv
         notify-send "Disabled plymouth"
         read -rp "Press any key to continue" _
         ;;
