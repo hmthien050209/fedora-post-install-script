@@ -10,9 +10,9 @@
 #
 # Licensed under GPLv3 License
 
-echo -e "The script will install the following packages: \n\nhtop \nneofetch \nxclip \ngnome-tweaks \nmicro \ncode (Visual Studio Code) \ngh-cli \nGithubDesktop-linux-2.9.9-linux2 (Not in Fedora repos)"
+echo -e "The script will install the following packages: \n\nhtop \nneofetch \nxclip \ngnome-tweaks \nmicro \ncode (Visual Studio Code) \ngh-cli \nGithubDesktop-linux-2.9.9-linux2 (Not in Fedora repos)\n"
 while true; do
-    read -rp "\nContinue? [y/N]: " yn
+    read -rp "Continue? [y/N]: " yn
     case $yn in
     [Yy]*) 
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc

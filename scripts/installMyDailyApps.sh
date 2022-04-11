@@ -11,9 +11,9 @@
 # Licensed under GPLv3 License
 
 echo -e "The script will install the following packages: \n\npangox-compat (Fedora 32) \nredhat-lsb-core \nanydesk \ngoogle-chrome-stable \nvlc \nobs-studio \n@virtualization \nshotcut \
-\nseahorse \nclang \ncmake \nninja-build \npkg-config \ngtk3-devel \nxz-devel \nvariety \nDiscord with BetterDiscord and Dracula theme \nSignal \nTelegram \nRemmina \nGeoGebra \nBitwarden"
+\nseahorse \nclang \ncmake \nninja-build \npkg-config \ngtk3-devel \nxz-devel \nvariety \nDiscord with BetterDiscord and Dracula theme \nSignal \nTelegram \nRemmina \nGeoGebra \nBitwarden\n"
 while true; do
-    read -rp "\nContinue? [y/N]: " yn
+    read -rp "Continue? [y/N]: " yn
     
     case $yn in
     [Yy]*) 
