@@ -51,7 +51,7 @@ OPTIONS=(
     10 "Install Fish with Tide (requires Powerline-compatible fonts)"
     11 "Install Dracula theme"
     12 "Recover maximize, minimize button"
-    13 "Install Pop Shell for tiling window on GNOME"
+    13 "Install GNOME Extensions (read more in README.md)"
     14 "Install ibus-bamboo (\"Bộ gõ tiếng Việt\" for Vietnamese users)"
     15 "Enable dnf-automatic (Automatic updates)"
     16 "Secure your Linux system (by Chris Titus Tech)"
@@ -110,7 +110,7 @@ while true; do
         sudo dnf install fish -y
         
         echo "Installing Fisher and Tide"
-        "$(which fish)" dotfiles/fish/fisher_tide_install.sh
+        "$(which fish)" scripts/fish/fisher_tide_install.sh
 
         notify-send "Installed Fish, Fisher and Tide"
         read -rp "Press any key to continue" _
@@ -125,7 +125,7 @@ while true; do
         ;;
 
         13) 
-            scripts/installPopShell.sh
+            scripts/installExtensions.sh
         ;;
         
         14) 

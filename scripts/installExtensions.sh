@@ -10,13 +10,11 @@
 #
 # Licensed under GPLv3 License
 
-echo "Installing Pop Shell"
-sudo dnf install gnome-shell-extension-pop-shell xprop -y
-echo "Enabling Pop Shell"
-gnome-extensions enable pop-shell@system76.com # may need to go to extensions to enable
+echo "Installing my extensions, includes Pop Shell, AppIndicator and SoundOutputDeviceChooser"
+sudo dnf install gnome-shell-extension-pop-shell gnome-shell-extension-appindicator gnome-shell-extension-sound-output-device-chooser xprop -y
 gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
 gsettings set org.gnome.shell.extensions.pop-shell hint-color-rgba "rgb(66,103,212)"
 gsettings set org.gnome.shell.extensions.pop-shell gap-outer 0
 gsettings set org.gnome.shell.extensions.pop-shell gap-inner 0
-notify-send "Installed and enabled Pop Shell, if you're using Wayland, re-login and go to Extensions to enable it"
+notify-send "Installed Pop Shell, AppIndicator and SoundOutputDeviceChooser. Re-login and go to Extensions to enable it"
 read -rp "Press any key to continue" _

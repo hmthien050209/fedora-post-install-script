@@ -39,7 +39,7 @@ cd ./fedora-post-install-script
 3. Run it:
 
 ```sh
-chmod +x ./post-install.sh
+chmod u+x ./post-install.sh
 ./post-install.sh
 ```
 
@@ -47,40 +47,24 @@ chmod +x ./post-install.sh
 
 1. Speed-up and optimize `dnf`
 2. Check update for your system
-3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code`(VSCode), `dnf-automatic`, `unzip`, `gh` ([GitHub CLI](https://cli.github.com/)), `github-desktop`, `kitty`
+3. Install some tools, includes: `htop`, `neofetch`, `xclip`, `axel`, `gnome-tweaks`, `deltarpm`, `micro`, `code` (VSCode), `dnf-automatic`, `unzip`, `gh` ([GitHub CLI](https://cli.github.com/)), `github-desktop`, `kitty`
 4. Enable RPM Fusion, Flathub
-5. Install media codecs(from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
+5. Install media codecs (from the docs [here](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/))
 6. Disable "quiet" boot screen and optimize boot time (make your boot screen look like hacker's screen XD) (make some changes to GRUB config file, don't worry, I tested it and it's fine)
    <br>(My laptop is using SSD, it takes only 5 seconds to boot up after optimize)
-7. Install auto-cpufreq for laptop users
-8. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Starship and Dracula theme
+7. Install [auto-cpufreq](https://github.com/AdnanHodzic/auto-cpufreq) for laptop users
+8. Install Google Noto Sans fonts, Microsoft Cascadia Code fonts, Fish shell with Fisher and Tide, Dracula theme, etc.
 9. Recover the maximize and minimize button (disabled by default)
-10. Install Pop Shell for tiling window on GNOME
+10. Install GNOME Extensions like [Pop Shell](https://github.com/pop-os/shell), [AppIndicator](https://github.com/ubuntu/gnome-shell-extension-appindicator) and [SoundOutputDeviceChooser](https://github.com/kgshank/gse-sound-output-device-chooser)
 11. Secure your Linux system by setting up ufw, fail2ban (This one is from Chris Titus Tech)
 12. Install ibus-bamboo
-13. Install my daily apps, includes AnyDesk, VLC, OBS Studio, @Virtualization, Shotcut, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra, Bitwarden, `variety` for automatic background changing and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development
+13. Install my daily apps, includes AnyDesk, VLC, OBS Studio, @Virtualization, Shotcut, Seahorse (GNOME built-in password manager), Discord, Signal, Telegram, Remmina, GeoGebra, Bitwarden, `variety` for automatic background changing and `clang`, `cmake`, `gtk3-devel`, `ninja-build`, `pkg-config`, `xz-devel` for Flutter development, Docker rootless and Docker Desktop, Firefox and Google Chrome from Flatpak (which **WILL REMOVE THE NORMAL GOOGLE CHROME AND FIREFOX PACKAGE**, and then set Firefox as the default browser)
 
 ## Found an issue?
 
 Create an issue with `Bug report` template
 
-## Special thanks to:
-
-- Google for the [Noto Sans fonts](https://fonts.google.com/noto/specimen/Noto+Sans?query=Noto+Sans) (with OFL License)
-- Microsoft and their contributors for the [Cascadia Code fonts](https://github.com/microsoft/cascadia-code) (with OFL License) and [VSCode](https://github.com/Microsoft/vscode)
-- The Dracula team and their contributors for the [Dracula Theme for GTK](https://github.com/dracula/gtk) (with GPLv3 License)
-- The [TechHut YouTube channel](https://www.youtube.com/c/TechHutHD) for the video ["5 Things You MUST DO After Installing Fedora 35"](https://www.youtube.com/watch?v=-NwWE9YFFIg)
-- The official Fedora docs for the guide [how to setup automatic updates](https://docs.fedoraproject.org/en-US/quick-docs/autoupdates/) and [codecs install](https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/)
-- The [StackOverflow](https://stackoverflow.com), [AskUbuntu](https://askubuntu.com) community for helping me writing themes, fonts install script
-- [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo) for the Vietnamese input service on Linux(thanks to [OpenBuildService](https://software.opensuse.org//download.html?project=home%3Alamlng&package=ibus-bamboo) for the Fedora ibus-bamboo build)
-- [Zachary Yedidia (zyedidia)](https://github.com/zyedidia) and contributors for the [Micro Text Editor](https://github.com/zyedidia/micro)
-- [system76](https://system76.com) and contributors for the [Pop Shell](https://github.com/pop-os/shell)
-- [Adnan Hodzic](https://github.com/AdnanHodzic) and contributors for the [auto-cpufreq](https://github.com/AdnanHodzic/auto-cpufreq/) utility
-- [Osiris](https://github.com/osiris2600) for the [fedora-setup](https://github.com/osiris2600/fedora-setup) that my script based on
-- [Chris Titus Tech](https://github.com/ChrisTitusTech) for the [secure-linux script](https://github.com/ChrisTitusTech/secure-linux), go check out [his YouTube channel](https://www.youtube.com/c/ChrisTitusTech) and [his website](https://www.christitus.com/), he has many good videos about Linux
-- [Willi Mutschler](https://mutschler.eu/) for [BTRFS optimization for SSD](https://mutschler.eu/linux/install-guides/fedora-post-install/#btrfs-filesystem-optimizations) and some more things in [this guide](https://mutschler.eu/linux/install-guides/fedora-post-install/)
-- [ArchWiki](https://wiki.archlinux.org) for the [silent boot guide](https://wiki.archlinux.org/title/Silent_boot) and [Improving performance/Boot process guide](https://wiki.archlinux.org/title/Improving_performance/Boot_process) (yes this is Fedora but ArchWiki is also useful too XD)
-- All developers of third-party dependencies that I used in this script
+### Special thanks to all creators, all organizations and all contrinbutors the 3rd party apps and library included or will be install using this script.
 
 ## License
 
