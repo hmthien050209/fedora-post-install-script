@@ -61,7 +61,7 @@ while true; do
             echo "Virt-manager is not installed, skipping configuring virt-manager"
         else
             echo "Configuring virt-manager"
-            echo -e "\nunix_sock_group = \"libvirt\"\nunix_sock_rw_perms = \"0770\""
+            echo -e "\nunix_sock_group = \"libvirt\"\nunix_sock_rw_perms = \"0770\"" | sudo tee -a /etc/libvirt/libvirtd.conf
             sudo systemctl start libvirtd
             sudo systemctl enable libvirtd
             sudo usermod -a -G libvirt "$(whoami)"
