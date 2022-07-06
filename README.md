@@ -64,7 +64,7 @@ chmod u+x ./post-install.sh
 
 Create an issue with `Bug report` template
 
-### Special thanks to all creators, all organizations and all contrinbutors the 3rd party apps and library included or will be install using this script.
+### Special thanks to all creators, all organizations and all contributors of all 3rd party apps and library included or will be install using this script.
 
 ## License
 
