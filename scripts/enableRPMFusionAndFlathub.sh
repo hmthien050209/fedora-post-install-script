@@ -10,12 +10,13 @@
 #
 # Licensed under GPLv3 License
 
-echo "Enabling RPM Fusion"
+echo "Enabling RPMFusion and Flathub"
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm -y
 sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm -y
 sudo dnf upgrade --refresh -y
 sudo dnf groupupdate core -y
 sudo dnf install rpmfusion-free-release-tainted -y
 sudo dnf install dnf-plugins-core -y
-notify-send "Enabled RPM Fusion"
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+notify-send "Enabled RPMFusion and Flathub"
 read -rp "Press any key to continue" _

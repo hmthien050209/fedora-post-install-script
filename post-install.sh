@@ -39,24 +39,22 @@ then
 fi
 
 OPTIONS=(
-    1  "Install tools (Kitty requires Powerline-compatible fonts)"
-    2  "Enable RPM Fusion"
-    3  "Enable Flathub"
-    4  "Install media codecs - Read more in README.md"
-    5  "Install my daily apps"
-    6  "Plymouth options ->"
-    7  "Optimize booting time" 
-    8  "Install auto-cpufreq (recommended for laptop users)"
-    9  "Install Google Noto Sans fonts, Microsoft Cascadia Code fonts"
-    10 "Install Fish with Tide (requires Powerline-compatible fonts)"
-    11 "Install Dracula theme"
-    12 "Recover maximize, minimize button"
-    13 "Install GNOME Extensions (read more in README.md)"
-    14 "Install ibus-bamboo (\"Bộ gõ tiếng Việt\" for Vietnamese users)"
-    15 "Enable dnf-automatic (Automatic updates)"
-    16 "Secure your Linux system (by Chris Titus Tech)"
-    17 "Reboot"
-    18 "Quit"
+    1  "Install my apps"
+    2  "Enable RPM Fusion and Flathub"
+    3  "Install media codecs - Read more in README.md"
+    4  "Plymouth options ->"
+    5  "Optimize booting time" 
+    6  "Install auto-cpufreq (recommended for laptop users)"
+    7  "Install Google Noto Sans fonts, Microsoft Cascadia Code fonts"
+    8  "Install Fish with Tide (requires Powerline-compatible fonts)"
+    9  "Install Dracula theme"
+    10 "Recover maximize, minimize button"
+    11 "Install GNOME Extensions (read more in README.md)"
+    12 "Install ibus-bamboo (\"Bộ gõ tiếng Việt\" for Vietnamese users)"
+    13 "Enable dnf-automatic (Automatic updates)"
+    14 "Secure your Linux system (by Chris Titus Tech)"
+    15 "Reboot"
+    16 "Quit"
 )
 
 while true; do
@@ -71,42 +69,35 @@ while true; do
     clear
     case $CHOICE in 
         1) 
-            scripts/installTools.sh
+            scripts/installMyApps.sh
         ;;
        
         2) 
-            scripts/enableRPMFusion.sh
+            scripts/enableRPMFusionAndFlathub.sh
         ;;
         
-        3)
-            scripts/enableFlathub.sh
-        ;;
-
-        4) 
+        3) 
             scripts/installCodecs.sh
         ;;
 
-        5) 
-            scripts/installMyDailyApps.sh
-        ;;
 
-        6) 
+        4) 
             scripts/plymouthOptions.sh
         ;;
 
-        7) 
+        5) 
             scripts/optimizeBootTime.sh
         ;;
 
-        8) 
+        6) 
             scripts/installAuto-cpufreq.sh
         ;;
 
-        9)
+        7)
             scripts/installFonts.sh
         ;;
 
-        10) echo "Installing Fish"
+        8) echo "Installing Fish"
         sudo dnf install fish -y
         
         echo "Installing Fisher and Tide"
@@ -116,35 +107,35 @@ while true; do
         read -rp "Press any key to continue" _
         ;;
 
-        11) 
+        9) 
             scripts/installDraculaTheme.sh
         ;;
 
-        12) 
+        10) 
             scripts/recoverWindowButtons.sh
         ;;
 
-        13) 
+        11) 
             scripts/installExtensions.sh
         ;;
         
-        14) 
+        12) 
             scripts/installIbusBamboo.sh
         ;;
         
-        15) 
+        13) 
             scripts/enableDNFAutomatic.sh
         ;;
 
-        16) 
+        14) 
             scripts/secureLinux.sh
         ;;
 
-        17)
+        15)
             sudo systemctl reboot
         ;;
 
-        18) rm -rf CascadiaCode*
+        16) rm -rf CascadiaCode* GithubDesktop* docker* 
             exit 0
         ;;
 
