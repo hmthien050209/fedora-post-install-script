@@ -11,12 +11,7 @@
 # Licensed under GPLv3 License
 
 echo "Installing ibus-bamboo"
-if [ "$(rpm -E %fedora)" -gt 33 ];
-then
-    sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_33/home:lamlng.repo
-else
-    sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_"$(rpm -E %fedora)"/home:lamlng.repo
-fi
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_"$(rpm -E %fedora)"/home:lamlng.repo
 sudo dnf install ibus-bamboo -y
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo::Us')]"
 gsettings set org.gnome.desktop.interface gtk-im-module 'ibus'
