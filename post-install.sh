@@ -137,7 +137,9 @@ while true; do
 
         16) 
             # Undo any changes made to this repository to clean up
-            git reset --hard HEAD
+            git reset
+            git checkout .
+            git clean -fdx
             exit 0
         ;;
 
