@@ -135,7 +135,9 @@ while true; do
             sudo systemctl reboot
         ;;
 
-        16) rm -rf CascadiaCode* GithubDesktop* docker* 
+        16) 
+            # Undo any changes made to this repository to clean up
+            git reset --hard HEAD
             exit 0
         ;;
 

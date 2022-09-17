@@ -40,16 +40,6 @@ while true; do
         docker-ce-cli containerd.io docker-compose-plugin fuse-overlayfs iptables ./docker-desktop-4.11.1-x86_64.rpm google-chrome-stable \
         htop neofetch xclip gnome-tweaks micro code gh kitty -y
 
-        # Make sure the downloaded GithubDesktop installer file isn't corrupted
-        while true;
-        do
-            axel -n 20 "https://github.com/shiftkey/desktop/releases/download/release-3.0.2-linux1/GitHubDesktop-linux-3.0.2-linux1.rpm"
-            if [ "$(sha256sum -c ./GithubDesktop-sha256sum.sha256)" == "GitHubDesktop-linux-3.0.2-linux1.rpm: OK" ]; then 
-                sudo dnf install ./GitHubDesktop-linux-3.0.2-linux1.rpm -y
-                break 
-            fi
-        done
-
         # Make sure there isn't any running Docker-related service
         sudo systemctl disable --now docker.service docker.socket
 
@@ -67,6 +57,26 @@ while true; do
         # Download official Bitwarden AppImage
         axel -n 20 "https://vault.bitwarden.com/download/?app=desktop&platform=linux" -o Bitwarden-x86_64.AppImage
         sudo mv ./Bitwarden-x86_64.AppImage /opt/
+
+        # Make sure the downloaded GithubDesktop installer file isn't corrupted
+        while true;
+        do
+            axel -n 20 "https://github.com/shiftkey/desktop/releases/download/release-3.0.6-linux1/GitHubDesktop-linux-3.0.6-linux1.AppImage"
+            if [ "$(sha256sum -c ./GithubDesktop-sha256sum.sha256)" == "GitHubDesktop-linux-3.0.6-linux1.AppImage: OK" ]; then 
+                sudo mv ./GitHubDesktop-linux-3.0.6-linux1.AppImage /opt/
+                break 
+            fi
+        done
+
+        # Make sure the downloaded Docker Desktop installer file isn't corrupted
+        while true;
+        do
+            axel -n 20 "https://desktop.docker.com/linux/main/amd64/docker-desktop-4.12.0-x86_64.rpm"
+            if [ "$(sha256sum -c ./DockerDesktop-sha256sum.sha256)" == "docker-desktop-4.12.0-x86_64.rpm: OK" ]; then 
+                sudo dnf install ./docker-desktop-4.12.0-x86_64.rpm -y
+                break 
+            fi
+        done
 
         # Initialize the appimaged
         chmod u+x /opt/*.AppImage
