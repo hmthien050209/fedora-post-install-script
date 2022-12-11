@@ -15,8 +15,7 @@ Licensed under GPLv3 License
 
 #### Note: This script is only compatible on Fedora GNOME (The default DE for Fedora Workstation)
 > **Warning**
-> School year has begun, so the development of this project is temporarily suspended (I can just write a bit of code when I'm free).
-> Bugs expected, please kindly report it in the GitHub issues or even better, create a PR that helps fix the bug. I'll appreciate your work, thank you ^^
+> School year has begun, so the development of this project is temporarily suspended (I can just write a bit of code when I'm free) and bugs expected. So please kindly report it in the GitHub issues or even better, create a PR that helps fix the bug. I'll appreciate your work, thank you ^^
 
 ## Screenshots
 
